@@ -13,7 +13,7 @@ local hotkey2 = hs.hotkey.new({'ctrl', 'alt'}, "c", nil, function()
 end, nil, nil)
 
 local hotkey3 = hs.hotkey.new({'shift', 'cmd'}, "t", nil, function()
-  local _, path = hs.osascript.applescriptFromFile("apple-scripts/open-folder-iterm.applescript")
+  local _, path = hs.osascript.applescriptFromFile(hs.fs.currentDir() .. "/apple-scripts/open-folder-iterm.applescript")
   -- print(path)
   hs.execute('open -a iTerm "' .. path .. '"')
 end, nil, nil)
