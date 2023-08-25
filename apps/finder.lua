@@ -7,4 +7,4 @@ local hotkey = hs.hotkey.new({'ctrl'}, "h", nil, function()
   hs.eventtap.event.newKeyEvent({ "shift", "cmd" }, ".", true):post(app)
 end, nil, nil)
 
-watchApp.startAppWatcher(appname, { hotkey })
+watchApp.startAppWatcher({ appname }, { hotkey })

@@ -1,10 +1,19 @@
 local util = {}
 
-function util.startAppWatcher(appNameTrigger, hotkeys)
+function table.contains(table, element)
+  for _, value in pairs(table) do
+    if value == element then
+      return true
+    end
+  end
+  return false
+end
+
+function util.startAppWatcher(appNameTriggers, hotkeys)
   function watchApplication(appName, eventType)
     -- App focused
     if eventType == hs.application.watcher.activated then
-      if appName == appNameTrigger then
+      if table.contains(appNameTriggers, appName) then
         for _, hotkey in pairs(hotkeys) do
           if hotkey then
             hotkey:enable()
@@ -14,7 +23,7 @@ function util.startAppWatcher(appNameTrigger, hotkeys)
     end
 
     if eventType == hs.application.watcher.deactivated or eventType == hs.application.watcher.terminated then
-      if appName == appNameTrigger then
+      if table.contains(appNameTriggers, appName) then
         for _, hotkey in pairs(hotkeys) do
           if hotkey then
             hotkey:disable()
@@ -24,11 +33,13 @@ function util.startAppWatcher(appNameTrigger, hotkeys)
     end
   end
 
-  appWatcher = hs.application.watcher.new(watchApplication)
-  appWatcher:start()
+  for _, appName in pairs(appNameTriggers) do
+    appWatcher = hs.application.watcher.new(watchApplication)
+    appWatcher:start()
 
-  if hs.application.find(appNameTrigger) ~= nil then
-    watchApplication(appNameTrigger, hs.application.watcher.launched)
+    if hs.application.find(appName) ~= nil then
+      watchApplication(appName, hs.application.watcher.launched)
+    end
   end
 
 end

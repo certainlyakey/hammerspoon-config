@@ -22,9 +22,3 @@ hs.hotkey.bind({"ctrl", "alt", "cmd"}, "c", open_app("Google Chrome"))
 hs.hotkey.bind({"alt", "cmd"}, "e", open_app("Microsoft Teams"))
 hs.hotkey.bind({"alt", "cmd"}, "t", open_app("iTerm"))
 hs.hotkey.bind({"alt", "cmd", "shift"}, ",", open_app("System Settings"))
-
-hs.hotkey.bindSpec({ { "ctrl", "cmd"}, "c" },
-    function()
-        hs.osascript.applescriptFromFile("apple-scripts/copy-url.applescript")
-    end
-)
