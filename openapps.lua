@@ -15,6 +15,7 @@ end
 hs.hotkey.bind({}, "f6", open_app("Music"))
 hs.hotkey.bind({"alt", "cmd"}, "c", open_app("Nova"))
 hs.hotkey.bind({"ctrl", "cmd"}, "s", open_app("Safari"))
+hs.hotkey.bind({"alt", "cmd"}, "s", open_app("Safari"))
 hs.hotkey.bind({"alt", "cmd"}, "z", open_app("Figma"))
 hs.hotkey.bind({"alt", "cmd"}, "m", open_app("Mail"))
 hs.hotkey.bind({"alt", "cmd", "shift"}, "f", open_app("Fork"))

@@ -12,4 +12,10 @@ local hotkey2 = hs.hotkey.new({'ctrl', 'alt'}, "c", nil, function()
   app:selectMenuItem({"File", "Open With", "Nova (default)"})
 end, nil, nil)
 
-watchApp.startAppWatcher({ appname }, { hotkey1, hotkey2 })
+local hotkey3 = hs.hotkey.new({'shift', 'cmd'}, "t", nil, function()
+  local _, path = hs.osascript.applescriptFromFile("apple-scripts/open-folder-iterm.applescript")
+  -- print(path)
+  hs.execute('open -a iTerm "' .. path .. '"')
+end, nil, nil)
+
+watchApp.startAppWatcher({ appname }, { hotkey1, hotkey2, hotkey3 })
