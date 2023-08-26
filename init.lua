@@ -1,5 +1,5 @@
 local hammerspoonLoad = require("hammerspoon-load")
-local openApps = require("openapps")
+local openApps = require("open-apps")
 local spoons = require("spoons")
 local doubleTapModifiers = require("double-tap-modifiers")
 local appSafari = require("apps/safari")
