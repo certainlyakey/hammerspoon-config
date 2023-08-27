@@ -1,77 +1,71 @@
-local alert = require("hs.alert")
-local timer = require("hs.timer")
+-- Copied from https://github.com/jhkuperus/dotfiles/blob/master/hammerspoon/double-shift.lua
 local eventtap = require("hs.eventtap")
+local timer = require("hs.timer")
+
+local key = 'shift'
 
 local events = eventtap.event.types
 
 local module = {}
 
-module.timeFrame = 1 -- how quickly must the two single ctrl taps occur?
-module.clickCount = 2 -- how many clicks
-module.keyType = "shift" -- which key
 
--- what to do when the double tap of ctrl occurs
+-- What is the maximum number of seconds over which the double-press will be considered a double press
+module.timeFrame = 1
+
+-- Change what this function does to change the behavior under double shift (can be overridden when including this module)
 module.action = function()
-    -- alert("You tapped " .. module.keyType .. " " .. module.clickCount .. " times!")
-    -- hs.eventtap.event.newSystemKeyEvent('PLAY', true):post()
-    hs.eventtap.keyStroke({"fn", "cmd", "alt", "shift", "ctrl"}, "f1")
+  -- On double-tap of shift, we are sending CMD-Space to the OS to activate Spotlight (or whatever is on that shortcut)
+  hs.eventtap.keyStroke({"fn", "cmd", "alt", "shift", "ctrl"}, "f1")
 end
 
-local timeFirstControl, downCount = 0, 0
+local timeFirstPress, firstDown, secondDown = 0, false, false
 
--- verify that no keyboard flags are being pressed
+-- Function to check if the event is "clear" event where no modifier is pressed
 local noFlags = function(ev)
-    local result = true
-    for k, v in pairs(ev:getFlags()) do
-        if v then
-            result = false
-            break
-        end
+  local result = true
+  for k, v in pairs(ev:getFlags()) do
+    if v then
+      result = false
+      break
     end
-    return result
+  end
+  return result
 end
 
--- verify that *only* the specified key is being pressed
-local onlySpecifiedKey = function(ev)
-    local result = ev:getFlags()[module.keyType]
-    for k, v in pairs(ev:getFlags()) do
-        if k ~= module.keyType and v then
-            result = false
-            break
-        end
+-- Function to check if the event is a shift-press only (no other modifiers down)
+local onlyShift = function(ev)
+  local result = ev:getFlags()[key]
+  for k,v in pairs(ev:getFlags()) do
+    if k~=key and v then
+      result = false
+      break
     end
-    return result
+  end
+  return result
 end
 
--- the actual workhorse
-module.eventWatcher =
-    eventtap.new(
-    {events.flagsChanged, events.keyDown},
-    function(ev)
-        -- if it's been too long; previous state doesn't matter
-        if (timer.secondsSinceEpoch() - timeFirstControl) > module.timeFrame then
-            timeFirstControl, clickCount = 0, 0
-        end
+-- The function actually watching events and keeping track of the shift presses
+module.eventWatcher = eventtap.new({events.flagsChanged, events.keyDown}, function(ev)
+  if (timer.secondsSinceEpoch() - timeFirstPress) > module.timeFrame then
+    timeFirstPress, firstDown, secondDown = 0, false, false
+  end
 
-        if ev:getType() == events.flagsChanged then
-            if noFlags(ev) and downCount == module.clickCount then -- ctrl up and we've seen two, so do action
-                if module.action then
-                    module.action()
-                end
-                timeFirstControl, downCount = 0, 0
-            elseif onlySpecifiedKey(ev) and downCount == 0 then -- ctrl down and it's a first
-                downCount = downCount + 1
-                timeFirstControl = timer.secondsSinceEpoch()
-            elseif onlySpecifiedKey(ev) and downCount > 0 then -- ctrl down and it's the second
-                downCount = downCount + 1
-            elseif not noFlags(ev) then -- otherwise reset and start over
-                timeFirstControl, downCount = 0, 0
-            end
-        else -- it was a key press, so not a lone ctrl char -- we don't care about it
-            timeFirstControl, downCount = 0, 0
-        end
-        return false
+  if ev:getType() == events.flagsChanged then
+    if noFlags(ev) and firstDown and secondDown then -- shift up and we've seen two, do action
+      if module.action then module.action() end
+      timeFirstPress, firstDown, secondDown = 0, false, false
+    elseif onlyShift(ev) and not firstDown then -- first shift down, start timer
+      firstDown = true
+      timeFirstPress = timer.secondsSinceEpoch()
+    elseif onlyShift(ev) and firstDown then -- second shift down
+      secondDown = true
+    elseif not noFlags(ev) then -- some other key was pressed in between, cancel timer
+      timeFirstPress, firstDown, secondDown = 0, false, false
     end
-):start()
+  else -- some other key (other than modifiers) was pressed, cancel timer
+    timeFirstPress, firstDown, secondDown = 0, false, false
+  end
+  return false
+end):start()
 
 return module
