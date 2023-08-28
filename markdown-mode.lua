@@ -1,11 +1,5 @@
 -- From https://github.com/jasonrudolph/keyboard/blob/e5e351f1cc80f62cca2ce688a5d4a3dd7f3a4b36/hammerspoon/markdown.lua
-
-local isAppFocused = function(name)
-  local app = hs.application.frontmostApplication()
-  local appName = app:name()
-
-  return appName == name
-end
+local isAppFocused = require("../utils/is-app-focused")
 
 local keyUpDown = function(modifiers, key)
   -- Un-comment & reload config to log each keystroke that we're triggering
@@ -39,7 +33,7 @@ local function wrapSelectedText(wrapCharacters)
   end)
 
   hs.timer.doAfter(0.4, function()
-    if isAppFocused('Microsoft Teams') then
+    if isAppFocused.isAppFocused('Microsoft Teams') then
       keyUpDown('', 'delete')
       hs.eventtap.keyStrokes(wrapCharacters)
     end
