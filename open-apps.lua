@@ -31,4 +31,13 @@ hs.hotkey.bind({"alt", "cmd", "shift"}, "t", open_app("Transmit"))
 hs.hotkey.bind({"ctrl", "alt", "cmd"}, "c", open_app("Google Chrome"))
 hs.hotkey.bind({"alt", "cmd"}, "e", open_app("Microsoft Teams", true))
 hs.hotkey.bind({"alt", "cmd"}, "t", open_app("iTerm"))
-hs.hotkey.bind({"alt", "cmd", "shift"}, ",", open_app("System Settings", true))
+hs.hotkey.bind({"alt", "cmd", "shift"}, ",", function()
+  local url = 'x-apple.systempreferences:com.apple.Keyboard-Settings.extension'
+
+  local scheme = url:match('^([^:]+)')
+  local handler = hs.urlevent.getDefaultHandler(scheme)
+  -- or skip both of those and just do:
+  -- local handler = 'com.apple.systempreferences'
+
+  hs.urlevent.openURLWithBundle(url, handler)
+end)
