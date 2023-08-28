@@ -41,23 +41,24 @@ end)
 -- Shortcut: Align left
 hs.hotkey.bind({"alt"}, ",", function()
   local win = hs.window.focusedWindow()
-  local f = win:frame()
+  local screenFrame = win:screen():frame()
+  local winFrame = win:frame()
 
-  f.x = 0
-  win:setFrame(f)
+  winFrame.x = screenFrame.x
+
+  win:setFrame(winFrame)
 end)
 
 -- Shortcut: Align right
 hs.hotkey.bind({"alt"}, "/", function()
   local win = hs.window.focusedWindow()
-  local f = win:frame()
-  local max = win:screen():frame()
+  local screenFrame = win:screen():frame()
+  local winFrame = win:frame()
 
-  f.x = max.w - f.w
-  -- f.y = 0
-  -- f.w = max.w
-  -- f.h = max.h
-  win:setFrame(f)
+  winFrame.x = screenFrame.x + screenFrame.w - winFrame.w
+
+  win:setFrame(winFrame)
+end)
 end)
 
 -- TODO:
