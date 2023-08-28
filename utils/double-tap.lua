@@ -3,7 +3,7 @@ local timer = require("hs.timer")
 
 local util = {}
 
-function util.doubleTapWatcher(key, mods, keystroke)
+function util.doubleTapWatcher(key, mods, keystroke, callback)
   local module = {}
 
   local events = eventtap.event.types
@@ -11,7 +11,11 @@ function util.doubleTapWatcher(key, mods, keystroke)
   module.timeFrame = 1
 
   module.action = function()
-    hs.eventtap.keyStroke(mods, keystroke)
+    if callback then
+      callback()
+    else
+      hs.eventtap.keyStroke(mods, keystroke)
+    end
   end
 
   local timeFirstPress, firstDown, secondDown = 0, false, false
