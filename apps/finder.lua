@@ -18,4 +18,17 @@ local hotkey3 = hs.hotkey.new({'shift', 'cmd'}, "t", nil, function()
   hs.execute('open -a iTerm "' .. path .. '"')
 end, nil, nil)
 
-watchApp.startAppWatcher({ appname }, { hotkey1, hotkey2, hotkey3 })
+-- watchApp.startAppWatcher({ appname }, { hotkey1, hotkey2, hotkey3 })
+
+hs.window.filter.new(appname)
+:subscribe(hs.window.filter.windowFocused,function()
+  hotkey1:enable()
+  hotkey2:enable()
+  hotkey3:enable()
+end)
+:subscribe(hs.window.filter.windowUnfocused,function()
+  hotkey1:disable()
+  hotkey2:disable()
+  hotkey3:disable()
+end)
+
