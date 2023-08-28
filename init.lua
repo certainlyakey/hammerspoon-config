@@ -10,6 +10,9 @@ local markdownMode = require("markdown-mode")
 local other = require("other")
 local playground = require("playground")
 
+hs.application.enableSpotlightForNameSearches(true)
+hs.window.animationDuration = 0.2
+
 -- Links:
 -- https://blog.jverkamp.com/2023/03/19/keyboard-chords-with-hammerspoon/
 -- https://github.com/muescha/dot_hammerspoon/blob/886d7f33b441357365a226a9e3781fcaeef15787/Functions/HighLight.lua

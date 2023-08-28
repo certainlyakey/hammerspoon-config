@@ -1,4 +1,3 @@
-hs.window.animationDuration = 0.2
 
 -- Shortcut: Maximise
 hs.hotkey.bind({"alt"}, "f", function()
