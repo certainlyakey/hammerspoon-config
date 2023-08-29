@@ -12,4 +12,3 @@ end, nil, nil)
 hs.window.filter.new(appnames)
 :subscribe(hs.window.filter.windowFocused,function() hotkey1:enable() end)
 :subscribe(hs.window.filter.windowUnfocused,function() hotkey1:disable() end)
-

@@ -7,11 +7,16 @@ local appSafari = require("apps/safari")
 local appFinder = require("apps/finder")
 local appBrowsers = require("apps/browsers")
 local markdownMode = require("markdown-mode")
+local fnKeys = require("utils/fn-keys")
 local other = require("other")
 local playground = require("playground")
 
+-- Global Hammerspoon settings
 hs.application.enableSpotlightForNameSearches(true)
 hs.window.animationDuration = 0.2
+
+-- Init functions
+fnKeys()
 
 -- Links:
 -- https://blog.jverkamp.com/2023/03/19/keyboard-chords-with-hammerspoon/
