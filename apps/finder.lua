@@ -2,7 +2,7 @@ local watchApp = require("../utils/watch-app")
 local appname = "Finder"
 
 local hotkey1 = hs.hotkey.new({'ctrl'}, "h", nil, function()
-  local app = hs.appfinder.appFromName(appname_for_trigger)
+  local app = hs.appfinder.appFromName(appname)
   hs.eventtap.event.newKeyEvent({ "shift", "cmd" }, ".", true):post(app)
 end, nil, nil)
 
