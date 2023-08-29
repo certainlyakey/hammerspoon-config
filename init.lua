@@ -7,7 +7,7 @@ local appSafari = require("apps/safari")
 local appFinder = require("apps/finder")
 local appBrowsers = require("apps/browsers")
 local markdownMode = require("markdown-mode")
-local fnKeys = require("utils/fn-keys")
+-- local fnKeys = require("utils/fn-keys")
 local other = require("other")
 local playground = require("playground")
 
@@ -16,7 +16,10 @@ hs.application.enableSpotlightForNameSearches(true)
 hs.window.animationDuration = 0.2
 
 -- Init functions
-fnKeys()
+
+-- disabling due to currently using another shortcut for left click
+-- fnKeys()
+
 
 -- Links:
 -- https://blog.jverkamp.com/2023/03/19/keyboard-chords-with-hammerspoon/
@@ -25,3 +28,4 @@ fnKeys()
 -- https://rakhesh.com/coding/using-hammerspoon-to-switch-apps/ - tap cmd+alt+shortcut twice to do x
 -- https://evantravers.com/articles/2020/06/12/hammerspoon-handling-windows-and-layouts/
 -- https://github.com/asmagill/hammerspoon-config-take2/blob/master/_Spoons/LeftRightHotkey.spoon/init.lua
+-- https://github.com/Hammerspoon/hammerspoon/issues/2322#issuecomment-1090427915 (using § as modifier)
