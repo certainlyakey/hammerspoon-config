@@ -1,5 +1,6 @@
 local hammerspoonLoad = require("hammerspoon-load")
 local openApps = require("open-apps")
+local openFolders = require("open-folders")
 local windowManipulation = require("window-manipulation")
 local spoons = require("spoons")
 local doubleTapModifiers = require("double-tap-modifiers")
