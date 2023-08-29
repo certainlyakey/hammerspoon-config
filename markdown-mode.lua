@@ -1,5 +1,6 @@
 -- From https://github.com/jasonrudolph/keyboard/blob/e5e351f1cc80f62cca2ce688a5d4a3dd7f3a4b36/hammerspoon/markdown.lua
 local isAppFocused = require("../utils/is-app-focused")
+local globals = require('globals')
 
 local keyUpDown = function(modifiers, key)
   -- Un-comment & reload config to log each keystroke that we're triggering
@@ -84,13 +85,11 @@ end
 
 local markdownMode = hs.hotkey.modal.new({}, 'F20')
 
-local alertStyle = { atScreenEdge = 2, textFont = 'Avenir', radius = 12 }
-
 markdownMode.entered = function()
-  hs.alert.show('Markdown mode started', alertStyle)
+  hs.alert.show('Markdown mode started', globals.alertStyle)
 end
 markdownMode.exited = function()
-  hs.alert.show('Markdown mode exited', alertStyle)
+  hs.alert.show('Markdown mode exited', globals.alertStyle)
 end
 
 -- Bind the given key to call the given function and exit Markdown mode
