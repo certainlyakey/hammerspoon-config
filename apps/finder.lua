@@ -1,4 +1,4 @@
-local watchApp = require("../utils/watch-app")
+-- local watchApp = require("../utils/watch-app")
 local appname = "Finder"
 
 local hotkey1 = hs.hotkey.new({'ctrl'}, "h", nil, function()
@@ -14,13 +14,11 @@ end, nil, nil)
 
 local hotkey3 = hs.hotkey.new({'shift', 'cmd'}, "t", nil, function()
   local _, path = hs.osascript.applescriptFromFile(hs.fs.currentDir() .. "/apple-scripts/get-finder-folder.applescript")
-  -- print(path)
   hs.execute('open -a iTerm "' .. path .. '"')
 end, nil, nil)
 
 local hotkey4 = hs.hotkey.new({'shift', 'cmd'}, "f", nil, function()
   local _, path = hs.osascript.applescriptFromFile(hs.fs.currentDir() .. "/apple-scripts/get-finder-folder.applescript")
-  -- print(path)
   hs.execute('open -a fork "' .. path .. '"')
 end, nil, nil)
 
