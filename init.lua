@@ -31,5 +31,6 @@ hs.window.animationDuration = 0.2
 -- https://balatero.com/writings/hammerspoon/retrieving-input-field-values-and-cursor-position-with-hammerspoon/
 -- https://rakhesh.com/coding/using-hammerspoon-to-switch-apps/ - tap cmd+alt+shortcut twice to do x
 -- https://evantravers.com/articles/2020/06/12/hammerspoon-handling-windows-and-layouts/
--- https://github.com/asmagill/hammerspoon-config-take2/blob/master/_Spoons/LeftRightHotkey.spoon/init.lua
+-- https://github.com/asmagill/hammerspoon-config-take2/blob/master/_Spoons/LeftRightHotkey.spoon/init.lua and https://github.com/harsilspatel/dotfiles/blob/master/config/hammerspoon/hotkeyextension/hotkeyextension.lua (distinguish between left and right mods)
 -- https://github.com/Hammerspoon/hammerspoon/issues/2322#issuecomment-1090427915 (using § as modifier)
+-- https://github.com/imty42/oh-my-hammerspoon/blob/b109ada5e420a9d4770e137d716bcf87ee925686/init.lua#L292 (automatically move windows around on screen change)
