@@ -11,9 +11,13 @@ local markdownMode = require("markdown-mode")
 local other = require("other")
 local playground = require("playground")
 
+
 -- Global Hammerspoon settings
-hs.application.enableSpotlightForNameSearches(true)
+
+-- Disabled hs.application.enableSpotlightForNameSearches due to performance hit on config reload
+-- hs.application.enableSpotlightForNameSearches(true)
 hs.window.animationDuration = 0.2
+
 
 -- Init functions
 
