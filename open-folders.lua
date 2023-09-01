@@ -20,6 +20,11 @@ hs.hotkey.bind({'alt', 'cmd'}, '4', function()
   hs.execute('open ~/Library/Application\\ Support')
 end)
 
+-- Shortcut: open Projects
+hs.hotkey.bind({'alt', 'cmd'}, '5', function()
+  hs.execute('open ~/Projects')
+end)
+
 -- Shortcut: open Syncthing
 hs.hotkey.bind({'alt', 'cmd'}, '7', function()
   hs.execute('open ~/Documents/All/Syncthing')
