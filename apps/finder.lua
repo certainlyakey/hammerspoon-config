@@ -8,8 +8,8 @@ local hotkeys = {
   end),
   -- Shortcut: Open with Nova (doesn't work when set in Keyboard Shortcuts until first app switch)
   hs.hotkey.new({'ctrl', 'alt'}, 'c', nil, function()
-    app:selectMenuItem({'File', 'Open With', 'Nova'})
-    app:selectMenuItem({'File', 'Open With', 'Nova (default)'})
+    local _, path = hs.osascript.applescriptFromFile('apple-scripts/finder-get-file-path.applescript')
+    hs.execute('open -a nova "' .. path .. '"')
   end),
   -- Shortcut: Open folder in iTerm
   hs.hotkey.new({'shift', 'cmd'}, 't', nil, function()
@@ -31,7 +31,7 @@ local hotkeys = {
   end),
   -- Shortcut: Copy file path
   hs.hotkey.new({'ctrl', 'cmd'}, 'c', nil, function()
-    local _, path = hs.osascript.applescriptFromFile('apple-scripts/finder-copy-file-path.applescript')
+    local _, path = hs.osascript.applescriptFromFile('apple-scripts/finder-get-file-path.applescript')
     hs.execute('echo "' .. path .. '" | pbcopy')
   end),
   -- Shortcut: Go back (resets to ⌘ when set in Keyboard Shortcuts)
