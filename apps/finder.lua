@@ -31,7 +31,8 @@ local hotkeys = {
   end),
   -- Shortcut: Copy file path
   hs.hotkey.new({'ctrl', 'cmd'}, 'c', nil, function()
-    hs.osascript.applescriptFromFile('apple-scripts/finder-copy-file-path.applescript')
+    local _, path = hs.osascript.applescriptFromFile('apple-scripts/finder-copy-file-path.applescript')
+    hs.execute('echo "' .. path .. '" | pbcopy')
   end),
   -- Shortcut: Go back (resets to ⌘ when set in Keyboard Shortcuts)
   hs.hotkey.new({'cmd'}, 'left', nil, function()

@@ -5,4 +5,4 @@ tell application "Finder"
 		set selectedFilePath to POSIX path of first item of currentSelection
 	end if
 end tell
-set the clipboard to selectedFilePath
+return selectedFilePath
