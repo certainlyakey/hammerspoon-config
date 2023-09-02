@@ -3,7 +3,7 @@ local util = {}
 
 function util.focusOrNext(app)
   local function getFileName(file)
-    local fileName = file:match("[^/]*.app$")
+    local fileName = file:match('[^/]*.app$')
     return fileName:sub(0, #fileName - 4)
   end
 
@@ -39,7 +39,7 @@ function util.focusOrNext(app)
         -- It seems that this list order changes after one window get focused,
         -- Let's directly bring the last one to focus every time
         -- https://www.hammerspoon.org/docs/hs.window.html#focus
-        if app == "Finder" then
+        if app == 'Finder' then
           -- If the app is Finder the window count returned is one more than the actual count, so I subtract
           appWindows[#appWindows-1]:focus()
         else

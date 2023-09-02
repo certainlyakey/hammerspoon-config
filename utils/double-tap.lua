@@ -1,5 +1,5 @@
-local eventtap = require("hs.eventtap")
-local timer = require("hs.timer")
+local eventtap = require('hs.eventtap')
+local timer = require('hs.timer')
 
 local util = {}
 

@@ -4,7 +4,7 @@ local appname = 'Safari'
 local hotkeys = {
   -- Shortcut: Quit confirmation
   hs.hotkey.new({'cmd'}, 'q', nil, function()
-    hs.osascript.applescriptFromFile("apple-scripts/safari-quit-confirmation.applescript")
+    hs.osascript.applescriptFromFile('apple-scripts/safari-quit-confirmation.applescript')
   end),
   -- Shortcut: Move tab to the left
   hs.hotkey.new({'ctrl', 'alt'}, ',', nil, function()

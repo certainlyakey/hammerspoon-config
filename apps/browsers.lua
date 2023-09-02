@@ -1,6 +1,6 @@
 -- See https://github.com/sarangak/dotfiles/blob/a407bae7aabd250afb591c265575ecab7afb5dba/dot_hammerspoon/slack.lua
 -- TODO: support for many apps at once is not perfect – alternating apps may fail to enable/disable their shortcuts in correct sequence when switching from app to app
-local appnames = { "Safari", "Google Chrome" }
+local appnames = { 'Safari', 'Google Chrome' }
 
 local hotkeys = {
   -- Shortcut: Copy URL

@@ -1,5 +1,5 @@
 -- From https://github.com/jasonrudolph/keyboard/blob/e5e351f1cc80f62cca2ce688a5d4a3dd7f3a4b36/hammerspoon/markdown.lua
-local isAppFocused = require("../utils/is-app-focused")
+local isAppFocused = require('../utils/is-app-focused')
 local globals = require('globals')
 
 local keyUpDown = function(modifiers, key)
