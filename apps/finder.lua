@@ -43,8 +43,8 @@ end, nil, nil)
 
 -- watchApp.startAppWatcher({ appname }, { hotkey1, hotkey2, hotkey3 })
 
-hs.window.filter.new(appname)
-:subscribe(hs.window.filter.windowFocused,function()
+local wf = hs.window.filter.new(appname)
+wf:subscribe(hs.window.filter.windowFocused,function()
   hotkey1:enable()
   hotkey2:enable()
   hotkey3:enable()
