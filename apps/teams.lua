@@ -1,15 +1,27 @@
 local appname = 'Microsoft Teams'
 
--- Shortcut: Focus editing field
-local hotkey1 = hs.hotkey.new({'shift', 'cmd'}, "c", nil, function()
-  local app = hs.appfinder.appFromName(appname)
-  hs.eventtap.event.newKeyEvent({ "shift", "alt" }, "c", true):post(app)
-end, nil, nil)
+local hotkeys = {
+  -- Shortcut: Focus editing field
+  hs.hotkey.new({'shift', 'cmd'}, "c", nil, function()
+      local app = hs.appfinder.appFromName(appname)
+      hs.eventtap.event.newKeyEvent({ "shift", "alt" }, "c", true):post(app)
+    end),
+}
+
+-- Use non-anonymous function to improve performance
+local function enableKeys()
+  -- Use this instead of pairs syntax to improve performance
+  for k = 1, #hotkeys do
+    hotkeys[k]:enable()
+  end
+end
+
+local function disableKeys()
+  for k = 1, #hotkeys do
+    hotkeys[k]:disable()
+  end
+end
 
 local wf = hs.window.filter.new(appname)
-wf:subscribe(hs.window.filter.windowFocused,function()
-  hotkey1:enable()
-end)
-:subscribe(hs.window.filter.windowUnfocused,function()
-  hotkey1:disable()
-end)
+wf:subscribe(hs.window.filter.windowFocused, enableKeys)
+:subscribe(hs.window.filter.windowUnfocused, disableKeys)
