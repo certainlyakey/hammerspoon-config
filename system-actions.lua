@@ -1,4 +1,5 @@
 local globals = require('globals')
+local toggleVpn = require('utils/toggle-vpn')
 
 -- Shortcut: Love current song
 hs.hotkey.bind({'alt', 'cmd', 'shift'}, 'l', function()
@@ -10,8 +11,7 @@ end)
 
 -- Shortcut: Turn VPN on
 hs.hotkey.bind({'alt', 'cmd', 'shift'}, 'p', function()
-  hs.execute('networksetup -connectpppoeservice "Nortal VPN"')
-  hs.alert.show('Turning Nortal VPN on...', globals.alertStyle)
+  toggleVpn('Nortal VPN')
 end)
 
 -- Shortcut: Toggle Wifi
