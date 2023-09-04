@@ -1,3 +1,5 @@
+local quitConfirmation = require('utils/quit-confirmation')
+
 local appname = 'Mail'
 
 local hotkeys = {
@@ -5,6 +7,9 @@ local hotkeys = {
   hs.hotkey.new({'cmd'}, 'return', nil, function()
     local app = hs.appfinder.appFromName(appname)
     app:selectMenuItem({'Message', 'Send'})
+  end),
+  hs.hotkey.new({'cmd'}, 'q', nil, function()
+    quitConfirmation()
   end),
 }
 
