@@ -10,3 +10,4 @@ tell application "Finder"
 	end if
 end tell
 set the clipboard to selectedFileContents
+-- See https://www.reddit.com/r/hammerspoon/comments/rr9zjx/trying_to_copy_file_to_clipboard/jb7qca1 on copying an image

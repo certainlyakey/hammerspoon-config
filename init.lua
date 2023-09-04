@@ -40,3 +40,5 @@ hs.window.animationDuration = 0.2
 -- https://github.com/knu/Knu.spoon/tree/9e55529ce0c8460fc366973d77b3adca134aceda
 -- https://stackoverflow.com/questions/63795560/how-can-i-prevent-hammerspoon-hotkeys-from-overriding-hotkeys-in-other-applicati
 -- https://stackoverflow.com/questions/54151343/how-to-move-an-application-between-monitors-in-hammerspoon
+-- https://www.reddit.com/r/hammerspoon/comments/kmqo3y/auto_connect_to_homepod_or_other_sound_output_on/
+-- https://www.reddit.com/r/hammerspoon/comments/kfbiaf/longpress_sends_other_keystroke_than_shortpress/
