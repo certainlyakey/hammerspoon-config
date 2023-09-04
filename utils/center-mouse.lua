@@ -1,6 +1,4 @@
-local util = {}
-
-function util.centerMouse()
+return function()
   local cwin = hs.window.focusedWindow()
   local wf = cwin:frame()
   local cscreen = cwin:screen()
@@ -13,5 +11,3 @@ function util.centerMouse()
     hs.mouse.absolutePosition({x=cres.x+cres.w/2, y=cres.y+cres.h/2})
   end
 end
-
-return util

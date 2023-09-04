@@ -9,7 +9,7 @@ local function open_app(name, centerCursor)
       hs.appfinder.appFromName(name):activate()
     end
     if centerCursor then
-      centerMouse.centerMouse()
+      centerMouse()
     end
   end
 end
