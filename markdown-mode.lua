@@ -93,30 +93,30 @@ markdownMode.exited = function()
 end
 
 -- Bind the given key to call the given function and exit Markdown mode
-function markdownMode.bindWithAutomaticExit(mode, key, fn)
-  mode:bind({}, key, function()
+function markdownMode.bindWithAutomaticExit(mode, mods, key, fn)
+  mode:bind(mods, key, function()
     mode:exit()
     fn()
   end)
 end
 
-markdownMode:bindWithAutomaticExit('b', function()
+markdownMode:bindWithAutomaticExit({}, 'b', function()
   wrapSelectedText('*')
 end)
 
-markdownMode:bindWithAutomaticExit('i', function()
+markdownMode:bindWithAutomaticExit({}, 'i', function()
   wrapSelectedText('_')
 end)
 
-markdownMode:bindWithAutomaticExit('s', function()
+markdownMode:bindWithAutomaticExit({}, 's', function()
   wrapSelectedText('~')
 end)
 
-markdownMode:bindWithAutomaticExit('l', function()
+markdownMode:bindWithAutomaticExit({'cmd'}, 'v', function()
   inlineLink()
 end)
 
-markdownMode:bindWithAutomaticExit('`', function()
+markdownMode:bindWithAutomaticExit({}, '`', function()
   wrapSelectedText('`')
 end)
 
