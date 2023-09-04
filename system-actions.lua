@@ -11,7 +11,7 @@ end)
 
 -- Shortcut: Turn VPN on
 hs.hotkey.bind({'alt', 'cmd', 'shift'}, 'p', function()
-  toggleVpn('Nortal VPN')
+  toggleVpn('Nortal VPN', '🇪🇪')
 end)
 
 -- Shortcut: Toggle Wifi
