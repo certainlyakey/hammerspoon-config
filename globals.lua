@@ -1,5 +1,5 @@
 local globals = {}
 
-globals.alertStyle = { atScreenEdge = 2, textFont = 'Avenir', radius = 12 }
+globals.alertStyle = { atScreenEdge = 2, textFont = 'SF Pro' }
 
 return globals
