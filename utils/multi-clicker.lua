@@ -44,7 +44,7 @@ return function(button)
   end
 
   function self.clickDown()
-    local point = hs.mouse.getAbsolutePosition()
+    local point = hs.mouse.absolutePosition()
     local numClicks = self.clicks + 1
     self.clicks = numClicks
     self.clicked.push({
@@ -58,7 +58,7 @@ return function(button)
     countResetter:start()
     local click = self.clicked.pop()
     if click then
-      local point = hs.mouse.getAbsolutePosition()
+      local point = hs.mouse.absolutePosition()
       if click.point.x ~= point.x or click.point.y ~= point.y then
         clickAt(dragged, click.numClicks, point)
       end
@@ -68,7 +68,7 @@ return function(button)
 
   function self.dragged(point)
     if self.clicked.size() > 0 then
-      point = point or hs.mouse.getAbsolutePosition()
+      point = point or hs.mouse.absolutePosition()
       clickAt(dragged, self.clicks, point)
     end
   end
