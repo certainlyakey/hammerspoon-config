@@ -13,7 +13,7 @@ local appBrowsers = require('apps/browsers')
 local displaySpaceNumber = require('display-space-number')
 local fixSpotlightPosition = require('spotlight-fix-position')
 local markdownMode = require('markdown-mode')
--- local fnKeys = require('utils/fn-keys')
+local fnKeys = require('utils/fn-keys')
 local other = require('other')
 local playground = require('playground')
 
@@ -27,7 +27,6 @@ hs.window.animationDuration = 0.2
 
 -- Init functions
 
--- disabling due to currently using another shortcut for left click
 -- fnKeys()
 
 
