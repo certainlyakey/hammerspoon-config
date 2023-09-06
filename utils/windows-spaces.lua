@@ -7,7 +7,7 @@ function util.moveToDesktopToLeft()
   local focus_space = hs.spaces.focusedSpace()
   local index = hs.fnutils.indexOf(all_spaces, focus_space)
   if index == 1 then
-      return
+    return
   end
   local prev_space_id = all_spaces[index - 1]
   hs.spaces.moveWindowToSpace(win:id(), prev_space_id)
@@ -20,7 +20,7 @@ function util.moveToDesktopToRight()
   local focus_space = hs.spaces.focusedSpace()
   local index = hs.fnutils.indexOf(all_spaces, focus_space)
   if index == #all_spaces then
-      return
+    return
   end
   local next_space_id = all_spaces[index + 1]
   hs.spaces.moveWindowToSpace(win:id(), next_space_id)
