@@ -1,0 +1,8 @@
+local spaceWatcher = hs.spaces.watcher.new(function(_)
+  local screen = hs.screen.mainScreen()
+  local space_ids = hs.spaces.spacesForScreen(screen:id())
+  local focused_space_id = hs.spaces.focusedSpace()
+  local focused_space_index = hs.fnutils.indexOf(space_ids, focused_space_id)
+  hs.alert.show('Space ' .. focused_space_index)
+end)
+spaceWatcher:start()
