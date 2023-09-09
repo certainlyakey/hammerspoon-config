@@ -34,7 +34,7 @@ local function wrapSelectedText(wrapCharacters)
   end)
 
   hs.timer.doAfter(0.4, function()
-    if isAppFocused.isAppFocused('Microsoft Teams') then
+    if isAppFocused('Microsoft Teams') then
       keyUpDown('', 'delete')
       hs.eventtap.keyStrokes(wrapCharacters)
     end

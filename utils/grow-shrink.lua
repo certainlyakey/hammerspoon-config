@@ -1,5 +1,4 @@
 -- From https://github.com/fuermosi777/utils/blob/eac0f1f6f598bf047006641212696d84cb6d224b/hammerspoon/init.lua
-local util = {}
 
 local function screenWidthFraction(ratio)
   local win = hs.window.focusedWindow()
@@ -15,7 +14,7 @@ local function screenHeightFraction(ratio)
   return math.floor(screenFrame.h * ratio)
 end
 
-function util.growShrink(dir)
+return function(dir)
   return function()
     local win = hs.window.focusedWindow()
     local frame = win:frame()
@@ -153,5 +152,3 @@ function util.growShrink(dir)
     win:setFrame(frame)
   end
 end
-
-return util

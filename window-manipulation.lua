@@ -63,10 +63,10 @@ hs.hotkey.bind({'alt'}, '/', function()
 end)
 
 -- Shortcut: Grow and shrink to left
-hs.hotkey.bind({'alt', 'shift'}, ',', growShrink.growShrink('left'))
+hs.hotkey.bind({'alt', 'shift'}, ',', growShrink('left'))
 
 -- Shortcut: Grow and shrink to right
-hs.hotkey.bind({'alt', 'shift'}, '/', growShrink.growShrink('right'))
+hs.hotkey.bind({'alt', 'shift'}, '/', growShrink('right'))
 
 -- Shortcut: Move to left space
 hs.hotkey.bind({'cmd', 'ctrl', 'shift'}, 'left', function()

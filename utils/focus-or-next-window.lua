@@ -1,7 +1,5 @@
 -- From https://rakhesh.com/coding/using-hammerspoon-to-switch-apps/ with adaptations for Ventura
-local util = {}
-
-function util.focusOrNext(app)
+return function(app)
   local function getFileName(file)
     local fileName = file:match('[^/]*.app$')
     return fileName:sub(0, #fileName - 4)
@@ -53,5 +51,3 @@ function util.focusOrNext(app)
     hs.application.launchOrFocus(app)
   end
 end
-
-return util
