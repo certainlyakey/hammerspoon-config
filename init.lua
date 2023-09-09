@@ -10,6 +10,7 @@ local appFinder = require('apps/finder')
 local appMail = require('apps/mail')
 local appTeams = require('apps/teams')
 local appBrowsers = require('apps/browsers')
+local spotlight = require('spotlight')
 local goToSpace = require('go-to-space')
 local displaySpaceNumber = require('display-space-number')
 local fixSpotlightPosition = require('spotlight-fix-position')
@@ -18,13 +19,14 @@ local fnKeys = require('utils/fn-keys')
 local other = require('other')
 local playground = require('playground')
 
-
 -- Global Hammerspoon settings
 
 -- Disabled hs.application.enableSpotlightForNameSearches due to performance hit on config reload?
 -- hs.application.enableSpotlightForNameSearches(true)
 hs.window.animationDuration = 0.2
-
+hs.window.filter.default:allowApp'Spotlight'
+hs.window.filter.ignoreAlways['Spotlight'] = false
+hs.window.filter.ignoreAlways['Notification Center'] = true
 
 -- Init functions
 
