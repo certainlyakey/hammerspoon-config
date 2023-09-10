@@ -41,6 +41,7 @@ modifier_handler = function(evt)
   end
 
   prev_modifiers = curr_modifiers
+
   return false
 end
 
