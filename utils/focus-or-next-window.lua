@@ -34,18 +34,18 @@ return function(app)
     -- A table of zero or more hs.window objects owned by the application. From the current space.
 
     if #appWindows > 0 then
-        -- It seems that this list order changes after one window get focused,
-        -- Let's directly bring the last one to focus every time
-        -- https://www.hammerspoon.org/docs/hs.window.html#focus
-        if app == 'Finder' then
-          -- If the app is Finder the window count returned is one more than the actual count, so I subtract
-          appWindows[#appWindows-1]:focus()
-        else
-          appWindows[#appWindows]:focus()
-        end
+      -- It seems that this list order changes after one window get focused,
+      -- Let's directly bring the last one to focus every time
+      -- https://www.hammerspoon.org/docs/hs.window.html#focus
+      if app == 'Finder' then
+        -- If the app is Finder the window count returned is one more than the actual count, so I subtract
+        appWindows[#appWindows-1]:focus()
+      else
+        appWindows[#appWindows]:focus()
+      end
     else
-        -- this should not happen, but just in case
-        hs.application.launchOrFocus(app)
+      -- this should not happen, but just in case
+      hs.application.launchOrFocus(app)
     end
   else -- if not focused
     hs.application.launchOrFocus(app)
