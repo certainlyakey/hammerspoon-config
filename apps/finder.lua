@@ -6,18 +6,18 @@ local hotkeys = {
   hs.hotkey.new({'ctrl'}, 'h', nil, function()
     hs.eventtap.event.newKeyEvent({ 'shift', 'cmd' }, '.', true):post(app)
   end),
-  -- Shortcut: Open with Nova (doesn't work when set in Keyboard Shortcuts until first app switch)
+  -- Shortcut: Open with editor (doesn't work when set in Keyboard Shortcuts until first app switch)
   hs.hotkey.new({'ctrl', 'alt'}, 'c', nil, function()
     local _, path = hs.osascript.applescriptFromFile('apple-scripts/finder-get-file-path.applescript')
-    hs.execute('open -a nova "' .. path .. '"')
+    hs.execute('open -a "Visual Studio Code" "' .. path .. '"')
   end),
   -- Shortcut: Open folder in iTerm
-  hs.hotkey.new({'shift', 'cmd'}, 't', nil, function()
+  hs.hotkey.new({'ctrl', 'alt'}, 't', nil, function()
     local _, path = hs.osascript.applescriptFromFile(hs.fs.currentDir() .. '/apple-scripts/get-finder-folder.applescript')
     hs.execute('open -a iTerm "' .. path .. '"')
   end),
   -- Shortcut: Open folder in Fork
-  hs.hotkey.new({'shift', 'cmd'}, 'f', nil, function()
+  hs.hotkey.new({'ctrl', 'alt'}, 'f', nil, function()
     local _, path = hs.osascript.applescriptFromFile(hs.fs.currentDir() .. '/apple-scripts/get-finder-folder.applescript')
     hs.execute('open -a fork "' .. path .. '"')
   end),
