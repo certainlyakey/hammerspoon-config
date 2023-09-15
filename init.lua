@@ -16,7 +16,8 @@ local displaySpaceNumber = require('display-space-number')
 local fixSpotlightPosition = require('spotlight-fix-position')
 local markdownMode = require('markdown-mode')
 local switchLayout = require('switch-layout-with-modifier')
-local fnKeys = require('utils/fn-keys')
+local fnKeys = require('fn-keys')
+local fnMod = require('utils/fn-mod')
 local other = require('other')
 local playground = require('playground')
 
@@ -48,3 +49,4 @@ hs.window.filter.ignoreAlways['Notification Center'] = true
 -- https://stackoverflow.com/questions/54151343/how-to-move-an-application-between-monitors-in-hammerspoon
 -- https://www.reddit.com/r/hammerspoon/comments/kmqo3y/auto_connect_to_homepod_or_other_sound_output_on/
 -- https://www.reddit.com/r/hammerspoon/comments/kfbiaf/longpress_sends_other_keystroke_than_shortpress/
+-- https://vvvfo.com/posts/bettertouchtool-hammerspoon
