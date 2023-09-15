@@ -1,9 +1,11 @@
+local toggleApp = require('utils/toggle-app')
+
 local function sendFnKey(code, smallerSteps, delay)
   smallerSteps = smallerSteps or false
   delay = delay or 0
-  
+
   if smallerSteps then
-    hs.eventtap.event.newSystemKeyEvent(code, true):setFlags({['alt']=true, ['shift']=true}):post()
+    hs.eventtap.event.newSystemKeyEvent(code, true):setFlags({ ['alt'] = true, ['shift'] = true }):post()
   else
     hs.eventtap.event.newSystemKeyEvent(code, true):post()
   end
@@ -44,6 +46,23 @@ end)
 sendRepeatableKey({}, 'F12', function()
   sendFnKey('SOUND_UP', true)
 end)
+
+local toggleAppWithEjectKey = function(evt)
+  local appName = 'Toggl Track'
+  local mainWindowMenuPath = { 'Window', 'Timer' }
+  local event = evt:systemKey()
+  local next = next
+  if next(event) then
+    if event.key == 'EJECT' and event.down then
+      toggleApp(appName, mainWindowMenuPath, true)
+    end
+  end
+end
+
+toggleAppTap = hs.eventtap.new({ hs.eventtap.event.types.systemDefined }, function(event)
+  toggleAppWithEjectKey(event)
+end)
+toggleAppTap:start()
 
 -- SOUND_UP
 -- SOUND_DOWN
