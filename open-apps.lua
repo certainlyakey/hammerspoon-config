@@ -1,7 +1,6 @@
 local focusOrNext = require('utils/focus-or-next-window')
 local openApp = require('utils/open-app')
 
---- quick open applications
 hs.hotkey.bind({}, 'f6', openApp('Music', nil, true))
 hs.hotkey.bind({'alt', 'cmd'}, 'c', openApp('Visual Studio Code'))
 -- TODO: combine focusOrNext with openApp
