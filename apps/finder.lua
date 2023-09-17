@@ -1,3 +1,4 @@
+local watchApp = require('../utils/watch-app')
 local appname = 'Finder'
 local app = hs.appfinder.appFromName(appname)
 
@@ -9,7 +10,8 @@ local hotkeys = {
   -- Shortcut: Open with editor (doesn't work when set in Keyboard Shortcuts until first app switch)
   hs.hotkey.new({'ctrl', 'alt'}, 'c', nil, function()
     local _, path = hs.osascript.applescriptFromFile('apple-scripts/finder-get-file-path.applescript')
-    hs.execute('open -a "Visual Studio Code" "' .. path .. '"')
+    -- Need to set `true` to load user shell config
+    hs.execute('code ' .. path .. ' -n', true)
   end),
   -- Shortcut: Open folder in iTerm
   hs.hotkey.new({'ctrl', 'alt'}, 't', nil, function()
@@ -44,20 +46,4 @@ local hotkeys = {
   end),
 }
 
--- Use non-anonymous function to improve performance
-local function enableKeys()
-  -- Use this instead of pairs syntax to improve performance
-  for k = 1, #hotkeys do
-    hotkeys[k]:enable()
-  end
-end
-
-local function disableKeys()
-  for k = 1, #hotkeys do
-    hotkeys[k]:disable()
-  end
-end
-
-local wf = hs.window.filter.new(appname)
-wf:subscribe(hs.window.filter.windowFocused, enableKeys)
-:subscribe(hs.window.filter.windowUnfocused, disableKeys)
+watchApp.startAppWatcher({ appname }, hotkeys)
