@@ -10,7 +10,7 @@ local function tableContains(table, element)
 end
 
 function util.startAppWatcher(appNameTriggers, hotkeys)
-  local function watchApplication(appName, eventType)
+  function watchApplication(appName, eventType)
     -- App focused
     if eventType == hs.application.watcher.activated then
       if tableContains(appNameTriggers, appName) then
@@ -34,7 +34,9 @@ function util.startAppWatcher(appNameTriggers, hotkeys)
   end
 
   for _, appName in pairs(appNameTriggers) do
-    local appWatcher = hs.application.watcher.new(watchApplication)
+    -- must not be local - will be garbage-collected!
+    -- see https://github.com/Hammerspoon/hammerspoon/issues/681#issuecomment-212286907
+    appWatcher = hs.application.watcher.new(watchApplication)
     appWatcher:start()
 
     if hs.application.find(appName) ~= nil then
