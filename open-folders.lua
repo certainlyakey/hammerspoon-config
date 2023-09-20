@@ -30,6 +30,11 @@ hs.hotkey.bind({'alt', 'cmd'}, '7', function()
   hs.execute('open ~/Documents/All/Syncthing')
 end)
 
+-- Shortcut: open Project links
+hs.hotkey.bind({'alt', 'ctrl', 'cmd'}, '7', function()
+  hs.execute('open ~/Local/Link\\ Folders/Project\\ Links')
+end)
+
 -- Shortcut: open Trash
 hs.hotkey.bind({'alt', 'cmd'}, 'b', function()
   hs.execute('open ~/.hammerspoon/bin/open-trash.app')
