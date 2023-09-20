@@ -1,8 +1,9 @@
 -- Double-tap of the modifier produces the original key
 local function goToSpaceByNumber(spaceIndex)
-  local all_spaces = hs.spaces.spacesForScreen(hs.screen.mainScreen():id())
-  local new_space_id = all_spaces[spaceIndex]
-  hs.spaces.gotoSpace(new_space_id)
+  -- local all_spaces = hs.spaces.spacesForScreen(hs.screen.mainScreen():id())
+  -- local new_space_id = all_spaces[spaceIndex]
+  -- hs.spaces.gotoSpace(new_space_id)
+  hs.eventtap.event.newKeyEvent({ 'shift', 'ctrl', 'cmd', 'alt' }, tostring(spaceIndex), true):post()
 end
 
 -- from https://groups.google.com/g/hammerspoon/c/HgDHNAWupFU/m/hny2NN8FCAAJ
