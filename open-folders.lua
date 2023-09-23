@@ -43,9 +43,8 @@ end)
 
 -- Shortcut: Eject disk images
 hs.hotkey.bind({'ctrl', 'cmd', 'shift'}, 'e', function()
-  hs.osascript.applescript([[
-    tell application "Finder" to eject (every disk whose ejectable is true)
-  ]])
+  --  From https://forum.keyboardmaestro.com/t/how-to-eject-mounted-dmg-images/29531/13
+  hs.execute('for disk in $(/usr/bin/hdiutil info | /usr/bin/egrep -o "^/dev/disk\\d+" | /usr/bin/sort | /usr/bin/uniq); do /usr/bin/hdiutil detach $disk; done')
   hs.alert.show('Disk images ejected', globals.alertStyle)
 end)
 

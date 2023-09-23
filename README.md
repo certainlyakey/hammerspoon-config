@@ -140,6 +140,10 @@ See [`finder.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/c287
 
 See [`finder.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/c2879420e8366df2903de95b98681df7070fb931/apps/finder.lua) for usage and [`finder-get-file-path.applescript`](https://github.com/certainlyakey/hammerspoon-config/blob/3be88381ad4d00087b49f6bdab117a8a12a3273b/apple-scripts/finder-get-file-path.applescript).
 
+### Eject disk images only with a hotkey
+
+See [`open-folders.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/bb26498aceb0624a30b549cc0e7b5ace30d337e7/open-folders.lua).
+
 ## Safari-specific actions
 
 ### Display detailed confirmation dialog when quitting
