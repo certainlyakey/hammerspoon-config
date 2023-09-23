@@ -22,7 +22,7 @@ See [`open-apps.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/a
 
 ### Grow and shrink windows with 2 hotkeys
 
-See [`window-manipulation.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/c68ff0984a552610b0d1bd04024f0ff901617aea/window-manipulation.lua#L1) for usage and [`grow-shrink.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/c68ff0984a552610b0d1bd04024f0ff901617aea/utils/grow-shrink.lua#L13).
+See [`window-manipulation.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/c68ff0984a552610b0d1bd04024f0ff901617aea/window-manipulation.lua) for usage and [`grow-shrink.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/c68ff0984a552610b0d1bd04024f0ff901617aea/utils/grow-shrink.lua).
 
 ### Move windows to left/right space
 
@@ -30,7 +30,7 @@ See [`window-manipulation.lua`](https://github.com/certainlyakey/hammerspoon-con
 
 ### Move mouse to current window by double tapping a modifier key
 
-See [`double-tap-modifiers.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/17435a7b28903ac2f210fbbb7a0bc713f3f1044a/double-tap-modifiers.lua#L13) for usage, [`center-mouse.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/d37a8108fb2419101e67911e9b13b75417d57b05/utils/center-mouse.lua#L0-L1) for the action and [`double-tap.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/2eab4b9e3cefc523cba77d457b4a485c4806a0aa/utils/double-tap.lua#L0-L1) for the hotkey.
+See [`double-tap-modifiers.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/17435a7b28903ac2f210fbbb7a0bc713f3f1044a/double-tap-modifiers.lua) for usage, [`center-mouse.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/d37a8108fb2419101e67911e9b13b75417d57b05/utils/center-mouse.lua) for the action and [`double-tap.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/2eab4b9e3cefc523cba77d457b4a485c4806a0aa/utils/double-tap.lua) for the hotkey.
 
 ## System actions
 
@@ -43,10 +43,6 @@ See [`system-actions.lua`](https://github.com/certainlyakey/hammerspoon-config/b
 ### Toggling Wifi with a hotkey
 
 See [`system-actions.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/46fbab2f49d624e939fc81c146450bf0a0223fc7/system-actions.lua) for usage.
-
-### Love the currently playing song in Apple Music
-
-See [`system-actions.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/46fbab2f49d624e939fc81c146450bf0a0223fc7/system-actions.lua) for usage and [`get-song.applescript`](https://github.com/certainlyakey/hammerspoon-config/blob/5e620e756d56c106f952dc386598edaaeaed7a9c/apple-scripts/get-song.applescript).
 
 ### Reveal Desktop by double tapping a modifier key
 
@@ -106,7 +102,7 @@ See [`other.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/9502e
 
 ### Confirm quitting (or any action) by pressing a shortcut two times
 
-See [`mail.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/a8e3abc613e86691deaaab654d7dabf95c8a997f/apps/mail.lua#L12) for usage and [`quit-confirmation.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/a8e3abc613e86691deaaab654d7dabf95c8a997f/utils/quit-confirmation.lua#L0-L1).
+See [`mail.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/a8e3abc613e86691deaaab654d7dabf95c8a997f/apps/mail.lua) for usage and [`quit-confirmation.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/a8e3abc613e86691deaaab654d7dabf95c8a997f/utils/quit-confirmation.lua).
 
 ### Enable Markdown markup in any app
 
@@ -114,29 +110,35 @@ Many apps support Markdown-flavored syntax, but not many implement balancing wra
 
 See [`markdown-mode.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/07bf6b9d92af8d33faf1558b5dc89cbb970fc27c/markdown-mode.lua).
 
+### Love the currently playing song in Apple Music
+
+This works in any app.
+
+See [`system-actions.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/46fbab2f49d624e939fc81c146450bf0a0223fc7/system-actions.lua) for usage and [`get-song.applescript`](https://github.com/certainlyakey/hammerspoon-config/blob/5e620e756d56c106f952dc386598edaaeaed7a9c/apple-scripts/get-song.applescript).
+
 ## Finder-specific actions
 
 ### Open selected file in specific app
 
 This can be useful if you have want to preview or quickly edit a file in a lightweight app without opening a heavier app that the filetype is assigned to by default.
 
-See [`finder.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/c2879420e8366df2903de95b98681df7070fb931/apps/finder.lua#L12) for usage and [`finder-get-file-path.applescript`](https://github.com/certainlyakey/hammerspoon-config/blob/3be88381ad4d00087b49f6bdab117a8a12a3273b/apple-scripts/finder-get-file-path.applescript).
+See [`finder.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/c2879420e8366df2903de95b98681df7070fb931/apps/finder.lua) for usage and [`finder-get-file-path.applescript`](https://github.com/certainlyakey/hammerspoon-config/blob/3be88381ad4d00087b49f6bdab117a8a12a3273b/apple-scripts/finder-get-file-path.applescript).
 
 ### Open current or selected folder in iTerm (or any other app) with same hotkey
 
-See [`finder.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/c2879420e8366df2903de95b98681df7070fb931/apps/finder.lua#L12) for usage and [`get-finder-folder.applescript`](https://github.com/certainlyakey/hammerspoon-config/blob/1c9b570a987431c3f90e880ddd260ebae8a36e7a/apple-scripts/get-finder-folder.applescript).
+See [`finder.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/c2879420e8366df2903de95b98681df7070fb931/apps/finder.lua) for usage and [`get-finder-folder.applescript`](https://github.com/certainlyakey/hammerspoon-config/blob/1c9b570a987431c3f90e880ddd260ebae8a36e7a/apple-scripts/get-finder-folder.applescript).
 
 ### Copy selected text file contents
 
-See [`finder.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/c2879420e8366df2903de95b98681df7070fb931/apps/finder.lua#L12) for usage and [`finder-copy-file-contents.applescript`](https://github.com/certainlyakey/hammerspoon-config/blob/5e620e756d56c106f952dc386598edaaeaed7a9c/apple-scripts/finder-copy-file-contents.applescript#L0-L1).
+See [`finder.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/c2879420e8366df2903de95b98681df7070fb931/apps/finder.lua) for usage and [`finder-copy-file-contents.applescript`](https://github.com/certainlyakey/hammerspoon-config/blob/5e620e756d56c106f952dc386598edaaeaed7a9c/apple-scripts/finder-copy-file-contents.applescript).
 
 ### Create new file
 
-See [`finder.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/c2879420e8366df2903de95b98681df7070fb931/apps/finder.lua#L12) for usage and [`finder-create-file.applescript`](https://github.com/certainlyakey/hammerspoon-config/blob/a8be3f1e6cc5a1af250adf53742fb89db5d311c8/apple-scripts/finder-create-file.applescript#L13).
+See [`finder.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/c2879420e8366df2903de95b98681df7070fb931/apps/finder.lua) for usage and [`finder-create-file.applescript`](https://github.com/certainlyakey/hammerspoon-config/blob/a8be3f1e6cc5a1af250adf53742fb89db5d311c8/apple-scripts/finder-create-file.applescript).
 
 ### Copy path of a folder or file
 
-See [`finder.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/c2879420e8366df2903de95b98681df7070fb931/apps/finder.lua#L12) for usage and [`finder-get-file-path.applescript`](https://github.com/certainlyakey/hammerspoon-config/blob/3be88381ad4d00087b49f6bdab117a8a12a3273b/apple-scripts/finder-get-file-path.applescript).
+See [`finder.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/c2879420e8366df2903de95b98681df7070fb931/apps/finder.lua) for usage and [`finder-get-file-path.applescript`](https://github.com/certainlyakey/hammerspoon-config/blob/3be88381ad4d00087b49f6bdab117a8a12a3273b/apple-scripts/finder-get-file-path.applescript).
 
 ## Safari-specific actions
 
