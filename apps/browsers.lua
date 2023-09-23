@@ -1,6 +1,5 @@
 -- See https://github.com/sarangak/dotfiles/blob/a407bae7aabd250afb591c265575ecab7afb5dba/dot_hammerspoon/slack.lua
 -- TODO: support for many apps at once is not perfect – alternating apps may fail to enable/disable their shortcuts in correct sequence when switching from app to app
-local appnames = { 'Safari', 'Google Chrome' }
 
 local hotkeys = {
   -- Shortcut: Copy URL
@@ -23,6 +22,6 @@ local function disableKeys()
   end
 end
 
-local wf = hs.window.filter.new(appname)
+local wf = hs.window.filter.new{ 'Safari', 'Google Chrome' }
 wf:subscribe(hs.window.filter.windowFocused, enableKeys)
 :subscribe(hs.window.filter.windowUnfocused, disableKeys)
