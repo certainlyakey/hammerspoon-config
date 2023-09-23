@@ -10,7 +10,12 @@ hs.hotkey.bind({'alt', 'cmd', 'shift'}, 'l', function()
   ]])
   local _, songInfo = hs.osascript.applescriptFromFile('apple-scripts/get-song.applescript')
   local image = hs.image.imageFromPath('~/.hammerspoon/images/app-music.png')
+  if image ~= nil then
   hs.notify.new({title='Song loved', informativeText=songInfo}):setIdImage(image):contentImage(image):send()
+  else
+    hs.notify.new({title='Song loved', informativeText=songInfo}):send()
+  end
+  -- TODO: display artwork too https://stackoverflow.com/a/71430813/102397
 end)
 
 -- Shortcut: Turn VPN on
