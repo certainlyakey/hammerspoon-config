@@ -77,7 +77,3 @@ end)
 hs.hotkey.bind({'cmd', 'ctrl', 'shift'}, 'right', function()
   windowsSpaces.moveToDesktopToRight()
 end)
-
--- TODO:
--- Grow and shrink from left/right (should perhaps automatically understand which side of screen a window is attached to, and grow from the other side)
---

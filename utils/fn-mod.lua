@@ -7,6 +7,7 @@ local clickNow = function()
   leftClicker.clickUp()
 end
 local function catcher(event)
+  -- fn-Enter
   if event:getFlags()['fn'] and event:getKeyCode() == 76 then
     return true, {clickNow()}
   end
