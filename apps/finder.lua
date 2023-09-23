@@ -1,4 +1,5 @@
 local watchApp = require('../utils/watch-app')
+local createNewFile = require('../utils/finder-create-file')
 local appname = 'Finder'
 local app = hs.appfinder.appFromName(appname)
 
@@ -29,7 +30,7 @@ local hotkeys = {
   end),
   -- Shortcut: Create file
   hs.hotkey.new({'ctrl'}, 't', nil, function()
-    hs.osascript.applescriptFromFile('apple-scripts/finder-create-file.applescript')
+    createNewFile()
   end),
   -- Shortcut: Copy file path
   hs.hotkey.new({'ctrl', 'cmd'}, 'c', nil, function()
