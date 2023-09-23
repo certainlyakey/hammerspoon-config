@@ -1,12 +1,10 @@
 -- This line must be located in this file
 hs.window.filter.default:allowApp'Spotlight'
 
-local appname = 'Spotlight'
-
 -- https://github.com/jasonrudolph/keyboard/blob/e5e351f1cc80f62cca2ce688a5d4a3dd7f3a4b36/hammerspoon/control-escape.lua
 local len = function(t)
   local length = 0
-  for k, v in pairs(t) do
+  for _, __ in pairs(t) do
     length = length + 1
   end
   return length
@@ -50,7 +48,7 @@ local modifier_tap = hs.eventtap.new({hs.eventtap.event.types.flagsChanged}, mod
 
 
 -- If any non-modifier key is pressed, we know we won't be sending anything
-local non_modifier_tap = hs.eventtap.new({hs.eventtap.event.types.keyDown}, function(evt)
+local non_modifier_tap = hs.eventtap.new({hs.eventtap.event.types.keyDown}, function()
   send_down_key = false
   send_enter_key = false
   return false
