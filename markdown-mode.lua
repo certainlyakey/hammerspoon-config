@@ -114,6 +114,14 @@ markdownMode:bindWithAutomaticExit({}, 's', function()
   wrapSelectedText('~')
 end)
 
+markdownMode:bindWithAutomaticExit({}, '\'', function()
+  wrapSelectedText('\'')
+end)
+
+markdownMode:bindWithAutomaticExit({'shift'}, '\'', function()
+  wrapSelectedText('"')
+end)
+
 markdownMode:bindWithAutomaticExit({'cmd'}, 'v', function()
   inlineLink()
 end)
