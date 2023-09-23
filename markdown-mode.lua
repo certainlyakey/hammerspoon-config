@@ -89,7 +89,9 @@ markdownMode.entered = function()
   hs.alert.show('Markdown mode started', globals.alertStyle)
 end
 markdownMode.exited = function()
-  hs.alert.show('Markdown mode exited', globals.alertStyle)
+  hs.timer.doAfter(2, function()
+    hs.alert.show('Markdown mode exited', globals.alertStyle)
+  end)
 end
 
 -- Bind the given key to call the given function and exit Markdown mode
