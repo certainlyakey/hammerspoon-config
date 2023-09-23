@@ -102,15 +102,15 @@ function markdownMode.bindWithAutomaticExit(mode, mods, key, fn)
   end)
 end
 
-markdownMode:bindWithAutomaticExit({}, 'b', function()
+markdownMode:bindWithAutomaticExit({'shift'}, '8', function()
   wrapSelectedText('*')
 end)
 
-markdownMode:bindWithAutomaticExit({}, 'i', function()
+markdownMode:bindWithAutomaticExit({'shift'}, '-', function()
   wrapSelectedText('_')
 end)
 
-markdownMode:bindWithAutomaticExit({}, 's', function()
+markdownMode:bindWithAutomaticExit({'shift'}, '`', function()
   wrapSelectedText('~')
 end)
 
