@@ -2,6 +2,8 @@ local focusOrNext = require('utils/focus-or-next-window')
 local openApp = require('utils/open-app')
 
 hs.hotkey.bind({}, 'f6', openApp('Music', nil, true))
+-- Do not Disturb key remapped via hidutil to f14, see https://gist.github.com/zats/16a301a1705d69be40accc596e4b63c9
+hs.hotkey.bind({}, 'f14', openApp('Music', nil, true))
 hs.hotkey.bind({'alt', 'cmd'}, 'c', openApp('Visual Studio Code'))
 -- TODO: combine focusOrNext with openApp
 -- hs.hotkey.bind({'alt', 'cmd'}, 's', function()
