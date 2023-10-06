@@ -17,7 +17,7 @@ hs.hotkey.bind({'shift', 'alt', 'cmd'}, 'c', openApp('Calendar'))
 hs.hotkey.bind({'alt', 'cmd', 'shift'}, 'f', openApp('Fork'))
 hs.hotkey.bind({'alt', 'cmd', 'shift'}, 't', openApp('Transmit'))
 hs.hotkey.bind({'ctrl', 'alt', 'cmd'}, 'c', openApp('Google Chrome'))
-hs.hotkey.bind({'alt', 'cmd'}, 'e', openApp('Microsoft Teams', nil, true))
+hs.hotkey.bind({'alt', 'cmd'}, 'e', openApp('Microsoft Teams (work or school)', nil, true))
 hs.hotkey.bind({'alt', 'cmd'}, 't', openApp('iTerm'))
 hs.hotkey.bind({'alt', 'cmd', 'shift'}, ',', function()
   local url = 'x-apple.systempreferences:com.apple.Keyboard-Settings.extension'

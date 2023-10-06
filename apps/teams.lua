@@ -1,4 +1,4 @@
-local appname = 'Microsoft Teams'
+local appname = 'Microsoft Teams (work or school)'
 
 local hotkeys = {
   -- Shortcut: Focus editing field
