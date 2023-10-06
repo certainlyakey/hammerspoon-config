@@ -1,7 +1,7 @@
 local globals = require('globals')
-local menubarIcon = hs.menubar.new()
 
 return function(vpnName, menubarLabel)
+  local menubarIcon = hs.menubar.new()
   local status = hs.execute('networksetup -showpppoestatus "' .. vpnName .. '"')
   if string.find(status, 'disconnected') then
     hs.execute('networksetup -connectpppoeservice "' .. vpnName .. '"')
