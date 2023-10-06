@@ -12,7 +12,7 @@ local hotkeys = {
   hs.hotkey.new({'ctrl', 'alt'}, 'c', nil, function()
     local _, path = hs.osascript.applescriptFromFile('apple-scripts/finder-get-file-path.applescript')
     -- Need to set `true` to load user shell config
-    hs.execute('code ' .. path .. ' -n', true)
+    hs.execute('code ' .. path, true)
   end),
   -- Shortcut: Open folder in iTerm
   hs.hotkey.new({'ctrl', 'alt'}, 't', nil, function()
@@ -35,7 +35,7 @@ local hotkeys = {
   -- Shortcut: Copy file path
   hs.hotkey.new({'ctrl', 'cmd'}, 'c', nil, function()
     local _, path = hs.osascript.applescriptFromFile('apple-scripts/finder-get-file-path.applescript')
-    hs.execute('echo "' .. path .. '" | pbcopy')
+    hs.execute('echo ' .. path .. ' | pbcopy')
   end),
   -- Shortcut: Go back (resets to ⌘ when set in Keyboard Shortcuts)
   hs.hotkey.new({'cmd'}, 'left', nil, function()
