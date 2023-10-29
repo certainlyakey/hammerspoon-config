@@ -4,3 +4,4 @@ _backups/
 .nova/
 bin/
 spaces.txt
+.vscode/favorites.json
