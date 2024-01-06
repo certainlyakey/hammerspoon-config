@@ -14,6 +14,10 @@ local hotkeys = {
     -- Need to set `true` to load user shell config
     hs.execute('code ' .. path, true)
   end),
+  -- Shortcut: Move files
+  hs.hotkey.new({'cmd', 'shift'}, 'v', nil, function()
+    hs.osascript.applescriptFromFile('apple-scripts/move-files.applescript')
+  end),
   -- Shortcut: Open folder in iTerm
   hs.hotkey.new({'ctrl', 'alt'}, 't', nil, function()
     local _, path = hs.osascript.applescriptFromFile(hs.fs.currentDir() .. '/apple-scripts/get-finder-folder.applescript')
