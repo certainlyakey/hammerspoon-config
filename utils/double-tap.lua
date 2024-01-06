@@ -3,7 +3,7 @@ local timer = require('hs.timer')
 
 local util = {}
 
-function util.doubleTapWatcher(key, mods, keystroke, callback)
+function util.doubleTapWatcher(key, mods, keystroke, rawFlagId, callback)
   local module = {}
 
   local events = eventtap.event.types
@@ -22,7 +22,7 @@ function util.doubleTapWatcher(key, mods, keystroke, callback)
 
   local noFlags = function(ev)
     local result = true
-    for k, v in pairs(ev:getFlags()) do
+    for _, v in pairs(ev:getFlags()) do
       if v then
         result = false
         break
@@ -34,7 +34,7 @@ function util.doubleTapWatcher(key, mods, keystroke, callback)
   local onlyKey = function(ev)
     local result = ev:getFlags()[key]
     for k,v in pairs(ev:getFlags()) do
-      if k~=key and v then
+      if k ~= key and v then
         result = false
         break
       end
@@ -46,15 +46,16 @@ function util.doubleTapWatcher(key, mods, keystroke, callback)
     if (timer.secondsSinceEpoch() - timeFirstPress) > module.timeFrame then
       timeFirstPress, firstDown, secondDown = 0, false, false
     end
+    local rawFlagChecked = rawFlagId == nil or ev:rawFlags() == rawFlagId
 
     if ev:getType() == events.flagsChanged then
       if noFlags(ev) and firstDown and secondDown then
         if module.action then module.action() end
         timeFirstPress, firstDown, secondDown = 0, false, false
-      elseif onlyKey(ev) and not firstDown then
+      elseif onlyKey(ev) and rawFlagChecked and not firstDown then
         firstDown = true
         timeFirstPress = timer.secondsSinceEpoch()
-      elseif onlyKey(ev) and firstDown then
+      elseif onlyKey(ev) and rawFlagChecked and firstDown then
         secondDown = true
       elseif not noFlags(ev) then
         timeFirstPress, firstDown, secondDown = 0, false, false
