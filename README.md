@@ -70,6 +70,13 @@ See [`spotlight.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/a
 
 See [`go-to-space.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/df63c963564a5201c3441bc8dad7073912e84f85/go-to-space.lua).
 
+### Navigate to last visited space by pressing a shortcut
+
+> [!IMPORTANT]
+> You will need to assign a set of hard-to-reach hotkeys to "Move to Desktop" commands in MacOS Settings. The keys in each shortcut should be numbered (eg `Ctrl+Shift+Alt+Cmd+1`, `Ctrl+Shift+Alt+Cmd+2`, etc.)
+
+See [`go-to-last-space.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/df63c963564a5201c3441bc8dad7073912e84f85/go-to-last-space.lua).
+
 ### Always display Spotlight popup on the main monitor
 
 By default Spotlight popup appears on the last monitor you used. This script will always move it to the main monitor.
