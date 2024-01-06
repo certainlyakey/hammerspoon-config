@@ -13,6 +13,7 @@ len = function(t)
 end
 
 get_time = function()
+-- could also use hs.timer.secondsSinceEpoch since it is fractional
   return timer.absoluteTime()
 end
 
