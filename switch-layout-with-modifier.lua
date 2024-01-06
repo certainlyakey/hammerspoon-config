@@ -9,6 +9,7 @@ end
 
 already_pressed = false
 prev_modifiers = {}
+prev_time = os.time()
 
 modifier_handler = function(evt)
 
@@ -18,7 +19,7 @@ modifier_handler = function(evt)
 
   if flags == rCmdCode and curr_modifiers['cmd'] and len(curr_modifiers) == 1 and len(prev_modifiers) == 0 then
     already_pressed = true
-  elseif prev_modifiers['cmd'] and len(curr_modifiers) == 0 and already_pressed then
+  elseif prev_modifiers['cmd'] and len(curr_modifiers) == 0 and already_pressed and prev_time ~= os.time() then
     already_pressed = false
     hs.eventtap.keyStroke({'fn', 'cmd', 'alt', 'shift'}, 'f3')
   else
