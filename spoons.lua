@@ -6,7 +6,7 @@ Install:andUse('MenubarFlag',
   {
     config = {
       colors = {
-          ['Russian – PC'] = { col.red },
+          ['Russian – PC'] = { col.red, col.white, col.red, col.white, col.red, col.white, col.red, col.white },
         }
       },
     start = true
