@@ -1,15 +1,29 @@
+local timer = require('hs.timer')
+
+-- in nanoseconds
+local min_delay = 300000000
+
 -- https://github.com/jasonrudolph/keyboard/blob/e5e351f1cc80f62cca2ce688a5d4a3dd7f3a4b36/hammerspoon/control-escape.lua
 len = function(t)
   local length = 0
-  for k, v in pairs(t) do
+  for _, __ in pairs(t) do
     length = length + 1
   end
   return length
 end
 
+get_time = function()
+  return timer.absoluteTime()
+end
+
+pressed_with_delay = function(prev)
+  local delay = get_time() - prev
+  return delay > min_delay
+end
+
 already_pressed = false
 prev_modifiers = {}
-prev_time = os.time()
+prev_time = 0
 
 modifier_handler = function(evt)
 
@@ -19,7 +33,8 @@ modifier_handler = function(evt)
 
   if flags == rCmdCode and curr_modifiers['cmd'] and len(curr_modifiers) == 1 and len(prev_modifiers) == 0 then
     already_pressed = true
-  elseif prev_modifiers['cmd'] and len(curr_modifiers) == 0 and already_pressed and prev_time ~= os.time() then
+    prev_time = get_time()
+  elseif prev_modifiers['cmd'] and len(curr_modifiers) == 0 and already_pressed and pressed_with_delay(prev_time) == true then
     already_pressed = false
     hs.eventtap.keyStroke({'fn', 'cmd', 'alt', 'shift'}, 'f3')
   else
