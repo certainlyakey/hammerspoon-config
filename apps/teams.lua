@@ -4,7 +4,7 @@ local hotkeys = {
   -- Shortcut: Focus editing field
   hs.hotkey.new({'shift', 'cmd'}, 'c', nil, function()
       local app = hs.appfinder.appFromName(appname)
-      hs.eventtap.event.newKeyEvent({'shift', 'alt'}, 'c', true):post(app)
+      hs.eventtap.event.newKeyEvent({'ctrl'}, 'r', true):post(app)
     end),
 }
 
