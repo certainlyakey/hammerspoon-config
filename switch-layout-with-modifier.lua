@@ -7,7 +7,7 @@ len = function(t)
   return length
 end
 
-send_shortcut = false
+already_pressed = false
 prev_modifiers = {}
 
 modifier_handler = function(evt)
@@ -17,12 +17,12 @@ modifier_handler = function(evt)
   local rCmdCode = 1048848
 
   if flags == rCmdCode and curr_modifiers['cmd'] and len(curr_modifiers) == 1 and len(prev_modifiers) == 0 then
-    send_shortcut = true
-  elseif prev_modifiers['cmd'] and len(curr_modifiers) == 0 and send_shortcut then
-    send_shortcut = false
+    already_pressed = true
+  elseif prev_modifiers['cmd'] and len(curr_modifiers) == 0 and already_pressed then
+    already_pressed = false
     hs.eventtap.keyStroke({'fn', 'cmd', 'alt', 'shift'}, 'f3')
   else
-    send_shortcut = false
+    already_pressed = false
   end
 
   prev_modifiers = curr_modifiers
@@ -36,7 +36,7 @@ modifier_tap = hs.eventtap.new({hs.eventtap.event.types.flagsChanged}, modifier_
 
 -- If any non-modifier key is pressed, we know we won't be sending anything
 non_modifier_tap = hs.eventtap.new({hs.eventtap.event.types.keyDown}, function(evt)
-  send_shortcut = false
+  already_pressed = false
   return false
 end)
 
