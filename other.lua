@@ -1,12 +1,16 @@
+local replaceTextSelection = require('../utils/replace-text-selection')
+local trimShellOutput = require('../utils/trim-shell-output')
+
 -- Shortcut: Hide notifications
 hs.hotkey.bind({'ctrl', 'cmd', 'shift'}, 'p', function()
   hs.osascript.javascriptFromFile(hs.fs.currentDir() .. '/jxa-scripts/close-notifications.js')
 end)
 
--- Shortcut: Move window lower for Toggl Track
+-- Shortcut: Find window with home directory and move it lower for Toggl Track
 hs.hotkey.bind({'ctrl', 'cmd', 'alt'}, ';', function()
-  local win = hs.window'aleksandrb'
-  
+  local o = hs.execute('whoami')
+  local win = hs.window(trimShellOutput(o))
+
   if win ~= nil then
     local f = win:frame()
     f.y = f.y + 50
