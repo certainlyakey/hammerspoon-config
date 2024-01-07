@@ -83,10 +83,6 @@ By default Spotlight popup appears on the last monitor you used. This script wil
 
 See [`spotlight-fix-position.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/f96c646d179c7eef99108293e93f0bdc29347739/spotlight-fix-position.lua).
 
-### Toggle keyboard layout by pressing a modifier key
-
-See [`switch-layout-with-modifier.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/28a01c742879b045ae63c25768c634a2b79d73a8/switch-layout-with-modifier.lua).
-
 ### Issue a left mouse click at current position
 
 This script is able to simulate multiple clicks too (eg, double-click).
@@ -104,6 +100,18 @@ See [`display-space-number.lua`](https://github.com/certainlyakey/hammerspoon-co
 This hides currently open Notification Center banners and alerts.
 
 See [`other.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/9502e78a3c2cc1ce8d9c92f868ee921cc9d6f398/other.lua) for usage and [`close-notifications.js`](https://github.com/certainlyakey/hammerspoon-config/blob/e114387c44ff0f2fb06215c928f491468c7405d0/jxa-scripts/close-notifications.js).
+
+
+## Keyboard layout
+
+### Toggle keyboard layout by pressing a modifier key
+
+See [`switch-layout-with-modifier.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/28a01c742879b045ae63c25768c634a2b79d73a8/switch-layout-with-modifier.lua).
+
+### Convert text incorrectly typed with wrong keyboard layout
+
+See [`convert-selection-layout.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/d184db0969a71526f15a6f5c8dbd81a8f1f90899/convert-selection-layout.lua).
+
 
 ## App actions
 
