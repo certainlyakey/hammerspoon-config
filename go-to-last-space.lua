@@ -14,6 +14,7 @@ end)
 
 lastSpaceWatcher:start()
 
+-- Shortcut: Go to last space
 hs.hotkey.bind({ 'ctrl' }, '`', function()
   local screen = hs.screen.mainScreen()
   local space_ids = hs.spaces.spacesForScreen(screen:id())

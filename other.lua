@@ -1,4 +1,3 @@
-local replaceTextSelection = require('../utils/replace-text-selection')
 local trimShellOutput = require('../utils/trim-shell-output')
 
 -- Shortcut: Hide notifications
