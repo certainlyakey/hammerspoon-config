@@ -75,7 +75,7 @@ See [`go-to-space.lua`](https://github.com/certainlyakey/hammerspoon-config/blob
 > [!IMPORTANT]
 > You will need to assign a set of hard-to-reach hotkeys to "Move to Desktop" commands in MacOS Settings. The keys in each shortcut should be numbered (eg `Ctrl+Shift+Alt+Cmd+1`, `Ctrl+Shift+Alt+Cmd+2`, etc.)
 
-See [`go-to-last-space.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/df63c963564a5201c3441bc8dad7073912e84f85/go-to-last-space.lua).
+See [`go-to-last-space.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/main/go-to-last-space.lua).
 
 ### Always display Spotlight popup on the main monitor
 
@@ -129,9 +129,13 @@ See [`system-actions.lua`](https://github.com/certainlyakey/hammerspoon-config/b
 
 This can be useful if you have want to preview or quickly edit a file in a lightweight app without opening a heavier app that the filetype is assigned to by default.
 
-See [`finder.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/c2879420e8366df2903de95b98681df7070fb931/apps/finder.lua) for usage and [`finder-get-file-path.applescript`](https://github.com/certainlyakey/hammerspoon-config/blob/3be88381ad4d00087b49f6bdab117a8a12a3273b/apple-scripts/finder-get-file-path.applescript).
+See [`finder.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/c2879420e8366df2903de95b98681df7070fb931/apps/finder.lua) for usage and [`move-files.applescript`](https://github.com/certainlyakey/hammerspoon-config/blob/main/apple-scripts/move-files.applescript).
 
 ### Open current or selected folder in iTerm (or any other app) with same hotkey
+
+See [`finder.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/c2879420e8366df2903de95b98681df7070fb931/apps/finder.lua) for usage and [`get-finder-folder.applescript`](https://github.com/certainlyakey/hammerspoon-config/blob/1c9b570a987431c3f90e880ddd260ebae8a36e7a/apple-scripts/get-finder-folder.applescript).
+
+### Move files with a single keyboard shortcut
 
 See [`finder.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/c2879420e8366df2903de95b98681df7070fb931/apps/finder.lua) for usage and [`get-finder-folder.applescript`](https://github.com/certainlyakey/hammerspoon-config/blob/1c9b570a987431c3f90e880ddd260ebae8a36e7a/apple-scripts/get-finder-folder.applescript).
 
