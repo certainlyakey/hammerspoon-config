@@ -19,7 +19,7 @@ end
 
 pressed_with_delay = function(prev)
   local delay = get_time() - prev
-  return delay > min_delay
+  return delay < min_delay
 end
 
 already_pressed = false
