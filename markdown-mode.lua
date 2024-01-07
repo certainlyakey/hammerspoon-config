@@ -1,37 +1,14 @@
 -- From https://github.com/jasonrudolph/keyboard/blob/e5e351f1cc80f62cca2ce688a5d4a3dd7f3a4b36/hammerspoon/markdown.lua
 local isAppFocused = require('../utils/is-app-focused')
+local replaceTextSelection = require('../utils/replace-text-selection')
 local globals = require('globals')
 
 local keyUpDown = function(modifiers, key)
-  -- Un-comment & reload config to log each keystroke that we're triggering
-  -- log.d('Sending keystroke:', hs.inspect(modifiers), key)
-
   hs.eventtap.keyStroke(modifiers, key, 0)
 end
 
 local function wrapSelectedText(wrapCharacters)
-  -- Preserve the current contents of the system clipboard
-  local originalClipboardContents = hs.pasteboard.getContents()
-
-  -- Copy the currently-selected text to the system clipboard
-  keyUpDown('cmd', 'c')
-
-  -- Allow some time for the command+c keystroke to fire asynchronously before
-  -- we try to read from the clipboard
-  hs.timer.doAfter(0.2, function()
-    -- Construct the formatted output and paste it over top of the
-    -- currently-selected text
-    local selectedText = hs.pasteboard.getContents()
-    local wrappedText = wrapCharacters .. selectedText .. wrapCharacters
-    hs.pasteboard.setContents(wrappedText)
-    keyUpDown('cmd', 'v')
-
-    -- Allow some time for the command+v keystroke to fire asynchronously before
-    -- we restore the original clipboard
-    hs.timer.doAfter(0.2, function()
-      hs.pasteboard.setContents(originalClipboardContents)
-    end)
-  end)
+  replaceTextSelection(function(selectedText) return wrapCharacters .. selectedText .. wrapCharacters end)
 
   hs.timer.doAfter(0.4, function()
     if isAppFocused('Microsoft Teams (work or school)') then
