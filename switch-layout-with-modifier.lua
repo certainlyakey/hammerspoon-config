@@ -22,6 +22,22 @@ pressed_with_delay = function(prev)
   return delay < min_delay
 end
 
+local function change_to_next_keyboard_language()
+  local current = hs.keycodes.currentLayout()
+  local layouts = hs.keycodes.layouts()
+
+  local index = 1
+  for k,v in pairs(layouts) do
+    if v == current then
+      index = k
+    end
+  end
+
+  local newIndex = ((index - 1 + 1) % #layouts) + 1
+
+  hs.keycodes.setLayout(layouts[newIndex])
+end
+
 already_pressed = false
 prev_modifiers = {}
 prev_time = 0
@@ -37,7 +53,7 @@ modifier_handler = function(evt)
     prev_time = get_time()
   elseif prev_modifiers['cmd'] and len(curr_modifiers) == 0 and already_pressed and pressed_with_delay(prev_time) == true then
     already_pressed = false
-    hs.eventtap.keyStroke({'fn', 'cmd', 'alt', 'shift'}, 'f3')
+    change_to_next_keyboard_language()
   else
     already_pressed = false
   end
