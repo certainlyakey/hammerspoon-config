@@ -7,11 +7,11 @@ local function reloadConfig()
   hs.notify.new({title='Hammerspoon', informativeText='Configuration loaded'}):send()
 end
 
-function sleepCallback( eventType )
-  hs.timer.doAfter(1,hs.reload)
-end
+-- function sleepCallback( eventType )
+--   hs.timer.doAfter(1,hs.reload)
+-- end
 
-sleepWatcher = hs.caffeinate.watcher.new(sleepCallback):start()
+-- sleepWatcher = hs.caffeinate.watcher.new(sleepCallback):start()
 
 -- configFileWatcher = hs.pathwatcher.new(os.getenv('HOME') .. '/.hammerspoon/', reloadConfig)
 -- configFileWatcher:start()
