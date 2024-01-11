@@ -13,7 +13,7 @@ return function(app)
   local focusedWindowApp = focusedWindow:application()
   -- This returns an hs.application object
 
-  -- Get the name of this application; this isn't really useful fof us as launchOrFocus needs the app name on disk
+  -- Get the name of this application; this isn't really useful for us as launchOrFocus needs the app name on disk
   -- I do use it below, further on...
   local focusedWindowAppName = focusedWindowApp:name()
 

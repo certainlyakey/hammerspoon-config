@@ -2,7 +2,7 @@
 -- TODO: support for many apps at once is not perfect – alternating apps may fail to enable/disable their shortcuts in correct sequence when switching from app to app
 
 local hotkeys = {
-  -- Shortcut: Copy URL
+  -- Shortcut: Copy URL of the currently opened tab
   hs.hotkey.new({'cmd', 'ctrl'}, 'c', nil, function()
     hs.osascript.applescriptFromFile(hs.fs.currentDir() .. '/apple-scripts/copy-url.applescript')
   end),

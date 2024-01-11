@@ -8,6 +8,7 @@ local hotkeys = {
     local app = hs.appfinder.appFromName(appname)
     app:selectMenuItem({'Message', 'Send'})
   end),
+  -- Shortcut: Quit with confirmation by double tapping the hotkey
   hs.hotkey.new({'cmd'}, 'q', nil, function()
     quitConfirmation()
   end),
