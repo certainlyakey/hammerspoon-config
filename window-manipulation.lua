@@ -11,17 +11,17 @@ hs.hotkey.bind({'ctrl', 'cmd'}, 'w', function()
   hs.window.frontmostWindow():close()
 end)
 
+-- Shortcut: Move to previous monitor
+hs.hotkey.bind({'shift', 'ctrl', 'cmd'}, 'up', function()
+  local window = hs.window.focusedWindow()
+  window:moveToScreen(window:screen():previous())
+end)
+
 -- Shortcut: Move to next monitor
 hs.hotkey.bind({'shift', 'ctrl', 'cmd'}, 'down', function()
   local window = hs.window.focusedWindow()
   window:moveToScreen(window:screen():next())
-end)
-
--- Shortcut: Move to next monitor and center
-hs.hotkey.bind({'shift', 'ctrl', 'cmd'}, 'up', function()
-  local window = hs.window.focusedWindow()
-  window:moveToScreen(window:screen():next())
-  window:centerOnScreen()
+  -- window:centerOnScreen()
 end)
 
 -- Shortcut: Maximise height
