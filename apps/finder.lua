@@ -8,11 +8,17 @@ local hotkeys = {
   hs.hotkey.new({'ctrl'}, 'h', nil, function()
     hs.eventtap.event.newKeyEvent({ 'shift', 'cmd' }, '.', true):post(app)
   end),
-  -- Shortcut: Open with editor (doesn't work when set in Keyboard Shortcuts until first app switch)
+  -- Shortcut: Open with Visual Studio Code (doesn't work when set in Keyboard Shortcuts until first app switch)
   hs.hotkey.new({'ctrl', 'alt'}, 'c', nil, function()
     local _, path = hs.osascript.applescriptFromFile('apple-scripts/finder-get-file-path.applescript')
     -- Need to set `true` to load user shell config
     hs.execute('code ' .. path, true)
+  end),
+  -- Shortcut: Open with BBEdit (doesn't work when set in Keyboard Shortcuts until first app switch)
+  hs.hotkey.new({'ctrl', 'alt'}, 'b', nil, function()
+    local _, path = hs.osascript.applescriptFromFile('apple-scripts/finder-get-file-path.applescript')
+    -- Need to set `true` to load user shell config
+    hs.execute('bbedit ' .. path, true)
   end),
   -- Shortcut: Move files
   hs.hotkey.new({'cmd', 'shift'}, 'v', nil, function()
