@@ -1,10 +1,10 @@
 local fileUtils = require('utils/file-utils')
+local lines = fileUtils.linesInFile('spaces.txt')
 
 local getSpaceLabel = function(index)
   local label = ''
 
   -- In spaces.txt each line is a label for a space
-  local lines = fileUtils.linesInFile('spaces.txt')
   local next = next
   if next(lines) ~= nil then
     for i, line in ipairs(lines) do
@@ -27,6 +27,6 @@ local spaceWatcher = hs.spaces.watcher.new(function(_)
   end
 
   hs.alert.closeAll()
-  hs.alert.show('Space ' .. focused_space_index .. comment)
+  hs.alert.show('Space ' .. focused_space_index .. comment, 1)
 end)
 spaceWatcher:start()
