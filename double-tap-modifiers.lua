@@ -10,6 +10,7 @@ local centerMouseAtWindow = doubleTapWatcher.doubleTapWatcher('cmd', {}, '', 104
 end)
 
 -- Shortcut: Reveal Desktop by pressing right alt twice
+-- The command doesn't execute in Sonoma
 local revealDesktop = doubleTapWatcher.doubleTapWatcher('alt', {}, '', 524608, function()
   hs.execute('/System/Applications/Mission\\ Control.app/Contents/MacOS/Mission\\ Control 1')
 end)

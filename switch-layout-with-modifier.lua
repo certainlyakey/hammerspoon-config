@@ -1,3 +1,4 @@
+-- Does not work well in Sonoma (Sonoma-only current layout label tends to get confused)
 local timer = require('hs.timer')
 local switchToNextLayout = require('../utils/switch-to-next-layout')
 
