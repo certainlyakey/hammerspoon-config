@@ -141,7 +141,7 @@ See [`system-actions.lua`](https://github.com/certainlyakey/hammerspoon-config/b
 
 This can be useful if you have want to preview or quickly edit a file in a lightweight app without opening a heavier app that the filetype is assigned to by default.
 
-See [`finder.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/main/apps/finder.lua) for usage and [`move-files.applescript`](https://github.com/certainlyakey/hammerspoon-config/blob/main/apple-scripts/move-files.applescript).
+See [`finder.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/main/apps/finder.lua) for usage and [`finder-get-file-path.applescript`](https://github.com/certainlyakey/hammerspoon-config/blob/main/apple-scripts/finder-get-file-path.applescript).
 
 ### Open current or selected folder in iTerm (or any other app) with same hotkey
 
