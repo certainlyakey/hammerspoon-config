@@ -1,9 +1,25 @@
 local growShrink = require('utils/grow-shrink')
 local windowsSpaces = require('utils/windows-spaces')
 
--- Shortcut: Maximise
+-- Shortcut: Maximise and restore
+-- from: https://github.com/Hammerspoon/hammerspoon/issues/181#issuecomment-69685928
 hs.hotkey.bind({'alt'}, 'f', function()
-  hs.window.focusedWindow():maximize()
+  local win = hs.window.focusedWindow()
+    local frame = win:frame()
+    local id = win:id()
+  
+    -- init table to save window state
+    savedwin = savedwin or {}
+    savedwin[id] = savedwin[id] or {}
+  
+    if (savedwin[id].maximized == nil or savedwin[id].maximized == false) then
+      savedwin[id].frame = frame
+      savedwin[id].maximized = true
+      win:maximize()
+    else
+      savedwin[id].maximized = false
+      win:setFrame(savedwin[id].frame)
+    end
 end)
 
 -- Shortcut: Close window (doesn't work for Fork or Finder, only closes a tab)
