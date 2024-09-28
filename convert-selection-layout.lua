@@ -2,7 +2,7 @@ local replaceTextSelection = require('../utils/replace-text-selection')
 local globals = require('globals')
 
 -- Shortcut: Convert keyboard layout of text selection En<->Ru
-hs.hotkey.bind({'ctrl', 'shift'}, 'p', function()
+hs.hotkey.bind({'ctrl', 'alt'}, '`', function()
   replaceTextSelection(function(selectedText)
     local layout = hs.keycodes.currentLayout()
 
