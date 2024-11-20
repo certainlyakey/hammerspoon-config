@@ -20,6 +20,7 @@ local convertSelectionLayout = require('convert-selection-layout')
 local switchLayout = require('switch-layout-with-modifier')
 local fnKeys = require('fn-keys')
 local fnMod = require('utils/fn-mod')
+local mouseButtons = require('mouse-buttons')
 local other = require('other')
 local playground = require('playground')
 

@@ -40,7 +40,7 @@ See [`double-tap-modifiers.lua`](https://github.com/certainlyakey/hammerspoon-co
 
 ### Toggling a specific VPN with a hotkey
 
-The script will also display an icon for the currently enabled VPN in the menubar – because MacOS doesn't do the job well.
+The script will also display an icon for the currently enabled VPN in the menubar – because MacOS doesn't do the job well. The VPN protocol must be supported natively by MacOS (doesn't work with OpenVPN, WireGuard etc.).
 
 See [`system-actions.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/main/system-actions.lua) for usage and [`toggle-vpn.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/main/utils/toggle-vpn.lua).
 
@@ -54,6 +54,9 @@ You can use native MacOS functionality to have Desktop revealed by single tap, b
 
 See [`double-tap-modifiers.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/main/double-tap-modifiers.lua) for usage and [`double-tap.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/main/utils/double-tap.lua).
 
+### Reveal Desktop by pressing a side mouse button
+
+See [`mouse-buttons.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/main/mouse-buttons.lua).
 
 ### Toggle menubar with a hotkey
 
