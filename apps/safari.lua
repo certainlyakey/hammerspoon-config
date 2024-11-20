@@ -14,6 +14,12 @@ local hotkeys = {
   hs.hotkey.new({'ctrl', 'alt'}, '.', nil, function()
     hs.osascript.applescriptFromFile('apple-scripts/move-tab-to-right.applescript')
   end),
+  -- Shortcut: Paste copied URL to the current tab
+  hs.hotkey.new({'shift', 'alt', 'cmd'}, 'v', nil, function()
+    hs.osascript.applescript([[
+      tell application "Safari" to set the URL of the front document to (the clipboard)
+    ]])
+  end),
 }
 
 -- Use non-anonymous function to improve performance
