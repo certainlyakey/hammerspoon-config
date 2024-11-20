@@ -54,6 +54,11 @@ You can use native MacOS functionality to have Desktop revealed by single tap, b
 
 See [`double-tap-modifiers.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/main/double-tap-modifiers.lua) for usage and [`double-tap.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/main/utils/double-tap.lua).
 
+
+### Toggle menubar with a hotkey
+
+See [`system-actions.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/main/system-actions.lua).
+
 ### Open Spotlight by double tapping a modifier key
 
 > [!IMPORTANT]
