@@ -28,9 +28,12 @@ end)
 hs.hotkey.bind({'alt'}, 'z', function()
   local win = hs.window.focusedWindow()
   local f = win:frame()
-  local max = win:screen():frame()
+	local screen = win:screen()
+	local max = screen:frame()
 
-  f.y = 0
+	-- f.x = max.x
+	f.y = max.y
+	-- f.w = max.w
   f.h = max.h
   win:setFrame(f)
 end)
