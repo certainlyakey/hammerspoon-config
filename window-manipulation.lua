@@ -3,7 +3,17 @@ local windowsSpaces = require('utils/windows-spaces')
 
 -- Shortcut: Maximise
 hs.hotkey.bind({'alt'}, 'f', function()
-  hs.window.focusedWindow():maximize()
+  -- full screen window
+	local win = hs.window.focusedWindow()
+	local f = win:frame()
+	local screen = win:screen()
+	local max = screen:frame()
+
+	f.x = max.x
+	f.y = max.y
+	f.w = max.w
+	f.h = max.h
+	win:setFrame(f,0)
 end)
 
 -- Shortcut: Close window (doesn't work for Fork or Finder, only closes a tab)
@@ -26,16 +36,16 @@ end)
 
 -- Shortcut: Maximise height
 hs.hotkey.bind({'alt'}, 'z', function()
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
+	local win = hs.window.focusedWindow()
+	local f = win:frame()
 	local screen = win:screen()
 	local max = screen:frame()
 
 	-- f.x = max.x
 	f.y = max.y
 	-- f.w = max.w
-  f.h = max.h
-  win:setFrame(f)
+	f.h = max.h
+	win:setFrame(f)
 end)
 
 -- Shortcut: Center
