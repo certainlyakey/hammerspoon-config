@@ -31,30 +31,50 @@ return function(dir)
         frame.x = 0
         frame.w = math.min(frame.w, screenFrame.w)
       elseif x == 0 then -- attached left, expand to full and then shrink
-        if w < screenWidthFraction(1 / 4) then -- win width less than 33%
-          frame.w = screenWidthFraction(1 / 4)
-        elseif w < screenWidthFraction(1 / 2) then -- win width less than 50%
-          frame.w = screenWidthFraction(1 / 2)
-        elseif w < screenWidthFraction(3 / 4) then -- win with less than 67%
-          frame.w = screenWidthFraction(3 / 4)
+        if w < screenWidthFraction(1 / 8) then -- win width less than 33%
+          frame.w = screenWidthFraction(1 / 8)
+        elseif w < screenWidthFraction(2 / 8) then -- win width less than 50%
+          frame.w = screenWidthFraction(2 / 8)
+        elseif w < screenWidthFraction(3 / 8) then -- win width less than 50%
+          frame.w = screenWidthFraction(3 / 8)
+        elseif w < screenWidthFraction(4 / 8) then -- win width less than 50%
+          frame.w = screenWidthFraction(4 / 8)
+        elseif w < screenWidthFraction(5 / 8) then -- win width less than 50%
+          frame.w = screenWidthFraction(5 / 8)
+        elseif w < screenWidthFraction(6 / 8) then -- win width less than 50%
+          frame.w = screenWidthFraction(6 / 8)
+        elseif w < screenWidthFraction(7 / 8) then -- win with less than 67%
+          frame.w = screenWidthFraction(7 / 8)
         elseif w < screenFrame.w then -- win not full screen
           frame.w = screenFrame.w
         else -- already full with, start shrink
-          frame.w = screenWidthFraction(3 / 4)
+          frame.w = screenWidthFraction(7 / 8)
           frame.x = screenFrame.w - frame.w
         end
       elseif x + frame.w < screenFrame.w then -- gap on right side, attaching right
         frame.x = screenFrame.w - frame.w
       else -- already attached right or overflow right, shrink
         frame.w = screenFrame.w - x
-        if w > screenWidthFraction(3 / 4) then
-          frame.w = screenWidthFraction(3 / 4)
+        if w > screenWidthFraction(7 / 8) then
+          frame.w = screenWidthFraction(7 / 8)
+          frame.x = screenFrame.w - frame.w
+        elseif w > screenWidthFraction(6 / 8) then
+          frame.w = screenWidthFraction(6 / 8)
+          frame.x = screenFrame.w - frame.w
+        elseif w > screenWidthFraction(5 / 8) then
+          frame.w = screenWidthFraction(5 / 8)
           frame.x = screenFrame.w - frame.w
         elseif w > screenWidthFraction(1 / 2) then
           frame.w = screenWidthFraction(1 / 2)
           frame.x = screenFrame.w - frame.w
-        elseif w > screenWidthFraction(1 / 3) then
-          frame.w = screenWidthFraction(1 / 3)
+        elseif w > screenWidthFraction(3 / 8) then
+          frame.w = screenWidthFraction(3 / 8)
+          frame.x = screenFrame.w - frame.w
+        elseif w > screenWidthFraction(2 / 8) then
+          frame.w = screenWidthFraction(2 / 8)
+          frame.x = screenFrame.w - frame.w
+        elseif w > screenWidthFraction(1 / 8) then
+          frame.w = screenWidthFraction(1 / 8)
           frame.x = screenFrame.w - frame.w
         end
       end
@@ -63,31 +83,51 @@ return function(dir)
         frame.x = screenFrame.w - w
         frame.w = math.min(frame.w, screenFrame.w)
       elseif x + w == screenFrame.w then -- attached right, expand to full then shrink
-        if w < screenWidthFraction(1 / 4) then -- win with less than 33%
-          frame.w = screenWidthFraction(1 / 4)
+        if w < screenWidthFraction(1 / 8) then -- win with less than 33%
+          frame.w = screenWidthFraction(1 / 8)
           frame.x = screenFrame.w - frame.w
-        elseif w < screenWidthFraction(1 / 2) then -- win width less than 50%
-          frame.w = screenWidthFraction(1 / 2)
+        elseif w < screenWidthFraction(2 / 8) then -- win width less than 50%
+          frame.w = screenWidthFraction(2 / 8)
           frame.x = screenFrame.w - frame.w
-        elseif w < screenWidthFraction(3 / 4) then -- win with less than 67%
-          frame.w = screenWidthFraction(3 / 4)
+        elseif w < screenWidthFraction(3 / 8) then -- win width less than 50%
+          frame.w = screenWidthFraction(3 / 8)
+          frame.x = screenFrame.w - frame.w
+        elseif w < screenWidthFraction(4 / 8) then -- win width less than 50%
+          frame.w = screenWidthFraction(4 / 8)
+          frame.x = screenFrame.w - frame.w
+        elseif w < screenWidthFraction(5 / 8) then -- win width less than 50%
+          frame.w = screenWidthFraction(5 / 8)
+          frame.x = screenFrame.w - frame.w
+        elseif w < screenWidthFraction(6 / 8) then -- win width less than 50%
+          frame.w = screenWidthFraction(6 / 8)
+          frame.x = screenFrame.w - frame.w
+        elseif w < screenWidthFraction(7 / 8) then -- win with less than 67%
+          frame.w = screenWidthFraction(7 / 8)
           frame.x = screenFrame.w - frame.w
         elseif w < screenFrame.w then -- win almost full width
           frame.w = screenFrame.w
           frame.x = screenFrame.w - frame.w
         else -- full width, start shrinking
-          frame.w = screenWidthFraction(3 / 4)
+          frame.w = screenWidthFraction(7 / 8)
         end
       elseif x > 0 then -- gap on left
         frame.x = 0
       else -- already attached left or overflow left
         frame.x = 0
-        if w > screenWidthFraction(3 / 4) then
-          frame.w = screenWidthFraction(3 / 4)
-        elseif w > screenWidthFraction(1 / 2) then
-          frame.w = screenWidthFraction(1 / 2)
-        elseif w > screenWidthFraction(1 / 3) then
-          frame.w = screenWidthFraction(1 / 3)
+        if w > screenWidthFraction(7 / 8) then
+          frame.w = screenWidthFraction(7 / 8)
+        elseif w > screenWidthFraction(6 / 8) then
+          frame.w = screenWidthFraction(6 / 8)
+        elseif w > screenWidthFraction(5 / 8) then
+          frame.w = screenWidthFraction(5 / 8)
+        elseif w > screenWidthFraction(4 / 8) then
+          frame.w = screenWidthFraction(4 / 8)
+        elseif w > screenWidthFraction(3 / 8) then
+          frame.w = screenWidthFraction(3 / 8)
+        elseif w > screenWidthFraction(2 / 8) then
+          frame.w = screenWidthFraction(2 / 8)
+        elseif w > screenWidthFraction(1 / 8) then
+          frame.w = screenWidthFraction(1 / 8)
         end
       end
     elseif dir == 'up' then
