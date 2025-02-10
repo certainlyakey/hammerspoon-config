@@ -83,10 +83,10 @@ hs.hotkey.bind({'alt', 'shift'}, '/', growShrink('right'))
 
 -- Shortcut: Move to left space
 hs.hotkey.bind({'cmd', 'ctrl', 'shift'}, 'left', function()
-  windowsSpaces.moveToDesktopToLeft()
+  windowsSpaces:moveToDesktopToLeft()
 end)
 
 -- Shortcut: Move to right space
 hs.hotkey.bind({'cmd', 'ctrl', 'shift'}, 'right', function()
-  windowsSpaces.moveToDesktopToRight()
+  windowsSpaces:moveToDesktopToRight()
 end)
