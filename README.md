@@ -2,6 +2,8 @@
 
 These are my assorted [Hammerspoon](https://www.hammerspoon.org) scripts, sometimes taken from someone else and sometimes written on my own. Feel free to copy and improve them. Huge thanks to people who are the original authors (usually indicated in a script file).
 
+The scripts were tested with Sonoma/Sequoia (although an occasional script remains to be updated in order to work on Sequoia).
+
 ## Opening apps, focusing and moving windows
 
 ### Open specific pane in the Settings app
@@ -61,6 +63,10 @@ See [`mouse-buttons.lua`](https://github.com/certainlyakey/hammerspoon-config/bl
 ### Toggle menubar with a hotkey
 
 See [`system-actions.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/main/system-actions.lua).
+
+### Muting on wake
+
+See [`sleep-wake.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/main/sleep-wake.lua).
 
 ### Open Spotlight by double tapping a modifier key
 
