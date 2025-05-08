@@ -9,7 +9,7 @@ return function()
     end
   end
 
-  local newIndex = ((index - 1 + 1) % #layouts) + 1
+  local newIndex = ((index) % #layouts) + 1
 
   hs.keycodes.setLayout(layouts[newIndex])
 end
