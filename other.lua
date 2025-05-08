@@ -12,7 +12,7 @@ hs.hotkey.bind({'ctrl', 'cmd', 'alt'}, ';', function()
 
   if win ~= nil then
     local f = win:frame()
-    f.y = f.y + 50
+    f.y = f.y + 38
     win:setFrame(f)
   end
 
