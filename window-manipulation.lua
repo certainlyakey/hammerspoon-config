@@ -2,59 +2,59 @@ local growShrink = require('utils/grow-shrink')
 local windowsSpaces = require('utils/windows-spaces')
 
 -- Shortcut: Maximise
-hs.hotkey.bind({'alt'}, 'f', function()
+hs.hotkey.bind({ 'alt' }, 'f', function()
   -- full screen window
-	local win = hs.window.focusedWindow()
-	local f = win:frame()
-	local screen = win:screen()
-	local max = screen:frame()
+  local win = hs.window.focusedWindow()
+  local f = win:frame()
+  local screen = win:screen()
+  local max = screen:frame()
 
-	f.x = max.x
-	f.y = max.y
-	f.w = max.w
-	f.h = max.h
-	win:setFrame(f,0)
+  f.x = max.x
+  f.y = max.y
+  f.w = max.w
+  f.h = max.h
+  win:setFrame(f, 0)
 end)
 
 -- Shortcut: Close window (doesn't work for Fork or Finder, only closes a tab)
-hs.hotkey.bind({'ctrl', 'cmd'}, 'w', function()
+hs.hotkey.bind({ 'ctrl', 'cmd' }, 'w', function()
   hs.window.frontmostWindow():close()
 end)
 
 -- Shortcut: Move to previous monitor
-hs.hotkey.bind({'shift', 'ctrl', 'cmd'}, 'up', function()
+hs.hotkey.bind({ 'shift', 'ctrl', 'cmd' }, 'up', function()
   local window = hs.window.focusedWindow()
   window:moveToScreen(window:screen():previous())
 end)
 
 -- Shortcut: Move to next monitor
-hs.hotkey.bind({'shift', 'ctrl', 'cmd'}, 'down', function()
+hs.hotkey.bind({ 'shift', 'ctrl', 'cmd' }, 'down', function()
   local window = hs.window.focusedWindow()
   window:moveToScreen(window:screen():next())
   -- window:centerOnScreen()
 end)
 
 -- Shortcut: Maximise height
-hs.hotkey.bind({'alt'}, 'z', function()
-	local win = hs.window.focusedWindow()
-	local f = win:frame()
-	local screen = win:screen()
-	local max = screen:frame()
+hs.hotkey.bind({ 'alt' }, 'z', function()
+  local win = hs.window.focusedWindow()
+  local f = win:frame()
+  local screen = win:screen()
+  local max = screen:frame()
 
-	-- f.x = max.x
-	f.y = max.y
-	-- f.w = max.w
-	f.h = max.h
-	win:setFrame(f)
+  -- f.x = max.x
+  f.y = max.y
+  -- f.w = max.w
+  f.h = max.h
+  win:setFrame(f)
 end)
 
 -- Shortcut: Center
-hs.hotkey.bind({'alt'}, '.', function()
+hs.hotkey.bind({ 'alt' }, '.', function()
   hs.window.focusedWindow():centerOnScreen()
 end)
 
 -- Shortcut: Align left
-hs.hotkey.bind({'alt'}, ',', function()
+hs.hotkey.bind({ 'alt' }, ',', function()
   local win = hs.window.focusedWindow()
   local screenFrame = win:screen():frame()
   local winFrame = win:frame()
@@ -65,7 +65,7 @@ hs.hotkey.bind({'alt'}, ',', function()
 end)
 
 -- Shortcut: Align right
-hs.hotkey.bind({'alt'}, '/', function()
+hs.hotkey.bind({ 'alt' }, '/', function()
   local win = hs.window.focusedWindow()
   local screenFrame = win:screen():frame()
   local winFrame = win:frame()
@@ -76,17 +76,31 @@ hs.hotkey.bind({'alt'}, '/', function()
 end)
 
 -- Shortcut: Grow and shrink to left
-hs.hotkey.bind({'alt', 'shift'}, ',', growShrink('left'))
+hs.hotkey.bind({ 'alt', 'shift' }, ',', growShrink('left'))
 
 -- Shortcut: Grow and shrink to right
-hs.hotkey.bind({'alt', 'shift'}, '/', growShrink('right'))
+hs.hotkey.bind({ 'alt', 'shift' }, '/', growShrink('right'))
+
+-- Shortcut: Fill to right
+hs.hotkey.bind({ 'alt', 'shift', 'command' }, '/', function()
+  local win = hs.window.focusedWindow()
+  if not win then return end
+
+  local frame = win:frame()
+  local screen = win:screen():frame()
+
+  -- Keep the left edge in place, expand to right edge of screen
+  frame.w = screen.x + screen.w - frame.x
+
+  win:setFrame(frame)
+end)
 
 -- Shortcut: Move to left space
-hs.hotkey.bind({'cmd', 'ctrl', 'shift'}, 'left', function()
+hs.hotkey.bind({ 'cmd', 'ctrl', 'shift' }, 'left', function()
   windowsSpaces:moveToDesktopToLeft()
 end)
 
 -- Shortcut: Move to right space
-hs.hotkey.bind({'cmd', 'ctrl', 'shift'}, 'right', function()
+hs.hotkey.bind({ 'cmd', 'ctrl', 'shift' }, 'right', function()
   windowsSpaces:moveToDesktopToRight()
 end)

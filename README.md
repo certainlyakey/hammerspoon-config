@@ -30,6 +30,10 @@ See [`fn-keys.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/mai
 
 See [`window-manipulation.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/main/window-manipulation.lua) for usage and [`grow-shrink.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/main/utils/grow-shrink.lua).
 
+### Fill current window to the right
+
+See [`window-manipulation.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/main/window-manipulation.lua).
+
 ### Move windows to left/right space
 
 See [`window-manipulation.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/main/window-manipulation.lua) for usage and [`windows-spaces.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/main/utils/windows-spaces.lua).
