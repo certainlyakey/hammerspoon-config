@@ -193,3 +193,11 @@ Note that due to Safari limitations this will reload the moved tab.
 
 See [`safari.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/main/apps/safari.lua) for usage and [`move-tab-to-left.applescript`](https://github.com/certainlyakey/hammerspoon-config/blob/main/apple-scripts/move-tab-to-left.applescript) and [`move-tab-to-right.applescript`](https://github.com/certainlyakey/hammerspoon-config/blob/main/apple-scripts/move-tab-to-right.applescript).
 
+### Navigate to top-level host of the currently viewed Safari tab
+
+See [`safari.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/main/apps/safari.lua) for usage and [`safari-go-to-host.applescript`](https://github.com/certainlyakey/hammerspoon-config/blob/main/apple-scripts/safari-go-to-host.applescript)
+
+### Navigate "up a directory" in the currently viewed Safari tab
+
+See [`safari.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/main/apps/safari.lua) for usage and [`safari-go-up.applescript`](https://github.com/certainlyakey/hammerspoon-config/blob/main/apple-scripts/safari-up.applescript)
+

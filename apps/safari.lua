@@ -14,6 +14,14 @@ local hotkeys = {
   hs.hotkey.new({'ctrl', 'alt'}, '.', nil, function()
     hs.osascript.applescriptFromFile('apple-scripts/move-tab-to-right.applescript')
   end),
+  -- Shortcut: Navigate to host
+  hs.hotkey.new({'cmd', 'shift'}, 'k', nil, function()
+    hs.osascript.applescriptFromFile('apple-scripts/safari-go-to-host.applescript')
+  end),
+  -- Shortcut: Navigate up a directory
+  hs.hotkey.new({'alt'}, 'up', nil, function()
+    hs.osascript.applescriptFromFile('apple-scripts/safari-go-up.applescript')
+  end),
   -- Shortcut: Paste copied URL to the current tab
   hs.hotkey.new({'shift', 'alt', 'cmd'}, 'v', nil, function()
     hs.osascript.applescript([[
