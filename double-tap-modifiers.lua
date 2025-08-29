@@ -4,6 +4,12 @@ local centerMouse = require('utils/center-mouse')
 -- Shortcut: Open Spotlight by pressing left shift twice
 local openSpotlight = doubleTapWatcher.doubleTapWatcher('shift', {'fn', 'cmd', 'alt', 'shift', 'ctrl'}, 'f1', 131330, false)
 
+-- Shortcut: Show current clipboard contents in an alert by pressing right shift twice
+local showClipboard = doubleTapWatcher.doubleTapWatcher('shift', {}, '', 131332, function()
+  local clipboardContents = hs.pasteboard.getContents()
+  hs.alert(clipboardContents)
+end)
+
 -- Shortcut: Center mouse at current window by pressing left cmd twice
 local centerMouseAtWindow = doubleTapWatcher.doubleTapWatcher('cmd', {}, '', 1048840, function()
   centerMouse()
