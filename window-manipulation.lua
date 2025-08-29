@@ -53,6 +53,17 @@ hs.hotkey.bind({ 'alt' }, '.', function()
   hs.window.focusedWindow():centerOnScreen()
 end)
 
+-- Shortcut: Resize and center
+hs.hotkey.bind({ 'alt', 'shift' }, 'c', function()
+  local win = hs.window.focusedWindow()
+  if not win then return end
+  local f = win:frame()
+
+  f.w = 1512
+  win:setFrame(f, 0)
+  win:centerOnScreen()
+end)
+
 -- Shortcut: Align left
 hs.hotkey.bind({ 'alt' }, ',', function()
   local win = hs.window.focusedWindow()
