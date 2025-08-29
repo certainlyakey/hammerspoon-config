@@ -42,6 +42,10 @@ See [`window-manipulation.lua`](https://github.com/certainlyakey/hammerspoon-con
 
 See [`double-tap-modifiers.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/main/double-tap-modifiers.lua) for usage, [`center-mouse.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/main/utils/center-mouse.lua) for the action and [`double-tap.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/main/utils/double-tap.lua) for the hotkey.
 
+### Automatically resize windows of specific apps with a shortcut, on display connect/disconnect, or on opening a window
+
+See [`windows-layouts.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/main/window-layouts.lua) for usage and code. This one is a bit complicated to configure - check the comments in the source code.
+
 ## System actions
 
 ### Toggling a specific VPN with a hotkey

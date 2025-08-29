@@ -22,6 +22,7 @@ local switchLayout = require('switch-layout-with-modifier')
 local fnKeys = require('fn-keys')
 local fnMod = require('utils/fn-mod')
 local mouseButtons = require('mouse-buttons')
+local windowLayouts = require('window-layouts')
 local other = require('other')
 local playground = require('playground')
 
