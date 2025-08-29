@@ -41,7 +41,7 @@ hs.window.filter.ignoreAlways['Notification Center'] = true
 -- Notifications every time a window is changed (helpful for tiling window manager)
 -- hs.window.filter.default:allowApp('Spotlight'):subscribe(hs.window.filter.windowFocused, function(window, appName)
 --   hs.alert.closeAll(0)
---   hs.alert.show(window:title(), { atScreenEdge = 2, textFont = 'SF Pro', textSize = 12, radius = 12 }, hs.screen.mainScreen(), 2.0)
+--   hs.alert.show(window:title(), { atScreenEdge = 2, textFont = 'Avenir Next', textSize = 12, radius = 12 }, hs.screen.mainScreen(), 2.0)
 -- end)
 
 -- Links:
