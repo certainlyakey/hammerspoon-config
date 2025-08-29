@@ -1,7 +1,7 @@
 local trimShellOutput = require('../utils/trim-shell-output')
 
 -- Shortcut: Hide notifications
-hs.hotkey.bind({'ctrl', 'cmd', 'shift'}, 'p', function()
+hs.hotkey.bind({'ctrl', 'cmd', 'shift'}, 'a', function()
   hs.osascript.javascriptFromFile(hs.fs.currentDir() .. '/jxa-scripts/close-notifications.js')
 end)
 
