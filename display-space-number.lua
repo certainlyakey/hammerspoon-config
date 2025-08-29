@@ -27,6 +27,8 @@ local spaceWatcher = hs.spaces.watcher.new(function(_)
   end
 
   hs.alert.closeAll()
-  hs.alert.show('Space ' .. focused_space_index .. comment, 1)
+  if focused_space_index ~= nil then
+    hs.alert.show('Space ' .. focused_space_index .. comment, 1)
+  end
 end)
 spaceWatcher:start()
