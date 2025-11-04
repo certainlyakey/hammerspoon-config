@@ -8,15 +8,24 @@ local keyUpDown = function(modifiers, key)
 end
 
 local function wrapSelectedText(wrapCharacters)
-  replaceTextSelection(function(selectedText) return wrapCharacters .. selectedText .. wrapCharacters end)
+  local len = #wrapCharacters
+  local left, right
 
-  hs.timer.doAfter(0.4, function()
-    if isAppFocused('Microsoft Teams (work or school)') then
-      keyUpDown('', 'delete')
-      hs.eventtap.keyStrokes(wrapCharacters)
-    end
+  if len == 1 then
+    left, right = wrapCharacters, wrapCharacters
+  elseif len % 2 == 0 then
+    local half = len / 2
+    left  = wrapCharacters:sub(1, half)
+    right = wrapCharacters:sub(half + 1)
+  else
+    -- Fallback for odd lengths: all but last on left, last on right
+    left  = wrapCharacters:sub(1, len - 1)
+    right = wrapCharacters:sub(len)
+  end
+
+  replaceTextSelection(function(selectedText)
+    return left .. selectedText .. right
   end)
-
 end
 
 local function inlineLink()
@@ -89,6 +98,10 @@ end)
 
 markdownMode:bindWithAutomaticExit({'shift'}, '`', function()
   wrapSelectedText('~')
+end)
+
+markdownMode:bindWithAutomaticExit({'shift'}, '[', function()
+  wrapSelectedText('{{}}')
 end)
 
 markdownMode:bindWithAutomaticExit({}, '\'', function()
