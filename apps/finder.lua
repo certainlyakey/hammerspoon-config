@@ -38,6 +38,10 @@ local hotkeys = {
   hs.hotkey.new({'shift', 'cmd'}, 'c', nil, function()
     hs.osascript.applescriptFromFile('apple-scripts/finder-copy-file-contents.applescript')
   end),
+  -- Shortcut: Duplicate window
+  hs.hotkey.new({'ctrl', 'shift', 'cmd'}, 'd', nil, function()
+    hs.osascript.applescriptFromFile('apple-scripts/finder-duplicate-window.applescript')
+  end),
   -- Shortcut: Create file
   hs.hotkey.new({'ctrl'}, 't', nil, function()
     createNewFile()

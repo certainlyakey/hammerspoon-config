@@ -173,6 +173,10 @@ See [`finder.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/main
 
 See [`finder.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/main/apps/finder.lua) for usage and [`get-finder-folder.applescript`](https://github.com/certainlyakey/hammerspoon-config/blob/main/apple-scripts/get-finder-folder.applescript).
 
+### Duplicate current Finder window with a keyboard shortcut
+
+See [`finder.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/main/apps/finder.lua) for usage and [`finder-duplicate-window.applescript`](https://github.com/certainlyakey/hammerspoon-config/blob/main/apple-scripts/finder-duplicate-window.applescript).
+
 ### Copy selected text file contents
 
 See [`finder.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/main/apps/finder.lua) for usage and [`finder-copy-file-contents.applescript`](https://github.com/certainlyakey/hammerspoon-config/blob/main/apple-scripts/finder-copy-file-contents.applescript).
