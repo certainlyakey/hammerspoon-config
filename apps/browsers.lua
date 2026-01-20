@@ -6,6 +6,19 @@ local hotkeys = {
   hs.hotkey.new({'cmd', 'ctrl'}, 'c', nil, function()
     hs.osascript.applescriptFromFile(hs.fs.currentDir() .. '/apple-scripts/copy-url.applescript')
   end),
+  -- Shortcut: Paste copied URL to the current tab
+  hs.hotkey.new({'shift', 'alt', 'cmd'}, 'v', nil, function()
+    hs.osascript.applescript([[
+      tell application "System Events"
+      set frontApp to name of first application process whose frontmost is true
+      end tell
+      if frontApp is "Safari" then
+        tell application "Safari" to set the URL of the front document to (the clipboard)
+      else if frontApp is "Google Chrome" then
+        tell application "Google Chrome" to set URL of active tab of front window to (the clipboard)
+      end if
+    ]])
+  end),
 }
 
 -- Use non-anonymous function to improve performance
