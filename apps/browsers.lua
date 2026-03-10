@@ -35,6 +35,6 @@ local function disableKeys()
   end
 end
 
-local wf = hs.window.filter.new{ 'Safari', 'Vivaldi', 'Google Chrome' }
+local wf = hs.window.filter.new{ 'Safari', 'Vivaldi', 'Google Chrome', 'Microsoft Edge' }
 wf:subscribe(hs.window.filter.windowFocused, enableKeys)
 :subscribe(hs.window.filter.windowUnfocused, disableKeys)
