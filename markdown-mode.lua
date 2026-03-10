@@ -28,7 +28,11 @@ local function wrapSelectedText(wrapCharacters)
   end)
 end
 
-local function inlineLink()
+local function inlineLink(prefix, separator, suffix)
+  prefix = prefix or '['
+  separator = separator or ']('
+  suffix = suffix or ')'
+
   -- Fetch URL from the system clipboard
   local linkUrl = hs.pasteboard.getContents()
 
@@ -41,7 +45,7 @@ local function inlineLink()
     -- Construct the formatted output and paste it over top of the
     -- currently-selected text
     local linkText = hs.pasteboard.getContents()
-    local markdown = '[' .. linkText .. '](' .. linkUrl .. ')'
+    local markdown = prefix .. linkText .. separator .. linkUrl .. suffix
     hs.pasteboard.setContents(markdown)
     keyUpDown('cmd', 'v')
 
@@ -114,6 +118,11 @@ end)
 
 markdownMode:bindWithAutomaticExit({'cmd'}, 'v', function()
   inlineLink()
+end)
+
+-- Jira style link: [link text|url]
+markdownMode:bindWithAutomaticExit({'cmd', 'shift'}, 'v', function()
+  inlineLink('[', '|', ']')
 end)
 
 markdownMode:bindWithAutomaticExit({}, '`', function()
