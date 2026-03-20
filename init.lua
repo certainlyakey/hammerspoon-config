@@ -23,6 +23,7 @@ local fnKeys = require('fn-keys')
 local fnMod = require('utils/fn-mod')
 local mouseButtons = require('mouse-buttons')
 local windowLayouts = require('window-layouts')
+local switchToEnWhenApp = require('switch-to-en-when-app')
 local other = require('other')
 local playground = require('playground')
 
