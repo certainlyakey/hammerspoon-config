@@ -193,6 +193,15 @@ See [`finder.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/main
 
 See [`open-folders.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/main/open-folders.lua).
 
+## Forwarding different URLs to different browsers
+
+You can redirect URLs according to domain or any other part to different browsers or apps across the OS. This uses core [URLDispatcher spoon](https://www.hammerspoon.org/Spoons/URLDispatcher.html#url_patterns) of Hammerspoon. For now it assumes Safari is your actual default browser. See [forward-urls-to-browsers.lua](https://github.com/certainlyakey/hammerspoon-config/blob/main/forward-urls-to-browsers.lua.lua). 
+
+
+1. Place a config file called `config/url-redirection-patterns.lua` with a returned table of [url_patterns](https://www.hammerspoon.org/Spoons/URLDispatcher.html#url_patterns)-compatible patterns. 
+2. Set Hammerspoon as the configured default browser in the MacOS settings. 
+3. The above will take care of redirections happening from non-browser applications (by default everything will be sent to Safari). For redirection from within web pages in Safari to other apps (eg always open some websites in Chrome when clicking a link on a page), you can use [Redirector Safari extension](https://store.rxliuli.com/extensions/redirector/) with a source URL like `(https?://mywebsite.com.*)` and a target URL like `hammerspoon://$1`. 
+
 ## Safari-specific actions
 
 ### Display detailed confirmation dialog when quitting

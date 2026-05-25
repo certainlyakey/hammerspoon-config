@@ -5,3 +5,4 @@ _backups/
 bin/
 spaces.txt
 .vscode/favorites.json
+config/
