@@ -1,13 +1,16 @@
 local focusOrNext = require('utils/focus-or-next-window')
 local openApp = require('utils/open-app')
+local focusNextOrSwitchApp = require('utils/focus-next-or-switch-app')
 local drawWindowBorder = require('utils/draw-window-border')
 
 hs.hotkey.bind({}, 'f6', openApp('Music', nil, true))
 -- Do not Disturb key remapped via hidutil to f14, see https://gist.github.com/zats/16a301a1705d69be40accc596e4b63c9
 hs.hotkey.bind({}, 'f14', openApp('Music', nil, true))
-hs.hotkey.bind({'alt', 'cmd'}, 'c', function()
-  focusOrNext('Visual Studio Code')
-end)
+hs.hotkey.bind({'alt', 'cmd'}, 'c', focusNextOrSwitchApp({
+  'com.microsoft.VSCode',
+  'com.jetbrains.intellij',
+  'dev.zed.Zed',
+}))
 hs.hotkey.bind({'alt', 'cmd'}, 's', function()
   focusOrNext('Safari')
 end)
