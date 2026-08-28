@@ -40,7 +40,7 @@ See [`window-manipulation.lua`](https://github.com/certainlyakey/hammerspoon-con
 
 ### Move the window under the mouse by holding Fn
 
-Hold `Fn` and move the mouse to move the topmost standard window under the pointer without focusing it.
+Hold `Fn` and move the mouse to move the topmost standard window under the pointer without focusing it. Hold left `Shift` while moving to constrain movement horizontally or vertically.
 
 See [`fn-move-window.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/main/fn-move-window.lua).
 

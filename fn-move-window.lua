@@ -8,12 +8,50 @@ local FnMoveWindow = {}
 FnMoveWindow.excludedAppBundleIDs = {}
 FnMoveWindow.strictModifiers = true
 
-local function onlyFn(flags)
+local rawFlagMasks = eventtap.event.rawFlagMasks
+
+local function hasRawFlag(event, flag)
+  local mask = rawFlagMasks[flag]
+  return mask ~= nil and (event:rawFlags() & mask) ~= 0
+end
+
+local function hasLeftShift(event)
+  return hasRawFlag(event, 'deviceLeftShift')
+end
+
+local function hasRightShift(event)
+  return hasRawFlag(event, 'deviceRightShift')
+end
+
+local function hasMoveModifiers(event)
+  local flags = event:getFlags()
+
   return flags.fn == true
     and not flags.cmd
     and not flags.alt
-    and not flags.shift
     and not flags.ctrl
+    and not hasRightShift(event)
+    and (not flags.shift or hasLeftShift(event))
+end
+
+local function dominantAxis(deltaX, deltaY)
+  if math.abs(deltaX) >= math.abs(deltaY) then
+    return 'horizontal'
+  end
+
+  return 'vertical'
+end
+
+local function constrainDelta(deltaX, deltaY, axis)
+  if axis == nil then
+    return deltaX, deltaY
+  end
+
+  if axis == 'horizontal' then
+    return deltaX, 0
+  end
+
+  return 0, deltaY
 end
 
 local function isExcludedAppBundleID(appBundleID, excludedAppBundleIDs)
@@ -41,6 +79,7 @@ function FnMoveWindow:init()
   self.targetWindow = nil
   self.startMouse = nil
   self.startFrame = nil
+  self.constraintAxis = nil
 
   self.flagsTap = eventtap.new({ eventtap.event.types.flagsChanged }, self:handleFlagsChanged())
   self.mouseMovedTap = eventtap.new({ eventtap.event.types.mouseMoved }, self:handleMouseMoved())
@@ -61,14 +100,15 @@ function FnMoveWindow:reset()
   self.targetWindow = nil
   self.startMouse = nil
   self.startFrame = nil
+  self.constraintAxis = nil
 end
 
-function FnMoveWindow:hasMoveModifier(flags)
+function FnMoveWindow:hasMoveModifier(event)
   if self.strictModifiers then
-    return onlyFn(flags)
+    return hasMoveModifiers(event)
   end
 
-  return flags.fn == true
+  return event:getFlags().fn == true
 end
 
 function FnMoveWindow:isExcluded(targetWindow)
@@ -92,12 +132,23 @@ function FnMoveWindow:startMoving(position)
   return true
 end
 
-function FnMoveWindow:moveTo(position)
+function FnMoveWindow:moveTo(position, event)
   if self.targetWindow == nil or self.startMouse == nil or self.startFrame == nil then return false end
 
+  local deltaX = position.x - self.startMouse.x
+  local deltaY = position.y - self.startMouse.y
+
+  if hasLeftShift(event) then
+    self.constraintAxis = self.constraintAxis or dominantAxis(deltaX, deltaY)
+  else
+    self.constraintAxis = nil
+  end
+
+  deltaX, deltaY = constrainDelta(deltaX, deltaY, self.constraintAxis)
+
   self.targetWindow:setTopLeft({
-    x = self.startFrame.x + position.x - self.startMouse.x,
-    y = self.startFrame.y + position.y - self.startMouse.y,
+    x = self.startFrame.x + deltaX,
+    y = self.startFrame.y + deltaY,
   })
 
   return true
@@ -105,8 +156,10 @@ end
 
 function FnMoveWindow:handleFlagsChanged()
   return function(event)
-    if not self:hasMoveModifier(event:getFlags()) then
+    if not self:hasMoveModifier(event) then
       self:reset()
+    elseif not hasLeftShift(event) then
+      self.constraintAxis = nil
     end
 
     return false
@@ -115,7 +168,7 @@ end
 
 function FnMoveWindow:handleMouseMoved()
   return function(event)
-    if not self:hasMoveModifier(event:getFlags()) then
+    if not self:hasMoveModifier(event) then
       self:reset()
       return false
     end
@@ -127,7 +180,7 @@ function FnMoveWindow:handleMouseMoved()
       return false
     end
 
-    self:moveTo(position)
+    self:moveTo(position, event)
     return true
   end
 end
