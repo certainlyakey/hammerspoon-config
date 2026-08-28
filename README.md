@@ -38,6 +38,12 @@ See [`window-manipulation.lua`](https://github.com/certainlyakey/hammerspoon-con
 
 See [`window-manipulation.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/main/window-manipulation.lua) for usage and [`windows-spaces.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/main/utils/windows-spaces.lua).
 
+### Move the window under the mouse by holding Fn
+
+Hold `Fn` and move the mouse to move the topmost standard window under the pointer without focusing it.
+
+See [`fn-move-window.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/main/fn-move-window.lua).
+
 ### Move mouse to current window by double tapping a modifier key
 
 See [`double-tap-modifiers.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/main/double-tap-modifiers.lua) for usage, [`center-mouse.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/main/utils/center-mouse.lua) for the action and [`double-tap.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/main/utils/double-tap.lua) for the hotkey.
