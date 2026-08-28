@@ -222,3 +222,6 @@ See [`safari.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/main
 
 See [`safari.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/main/apps/safari.lua) for usage and [`safari-go-up.applescript`](https://github.com/certainlyakey/hammerspoon-config/blob/main/apple-scripts/safari-up.applescript)
 
+### Saving and restoring currently open apps
+
+See [`save-restore-apps.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/main/save-restore-apps.lua).
