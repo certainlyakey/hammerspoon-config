@@ -22,6 +22,18 @@ local switchLayout = require('switch-layout-with-modifier')
 local fnKeys = require('fn-keys')
 local fnMod = require('utils/fn-mod')
 local mouseButtons = require('mouse-buttons')
+local mouseGestures = require('mouse-gestures'):configure({
+	gestures = {
+		{ gesture = 'UD', keyStroke = { { 'cmd' }, 'r' } },
+		{ gesture = 'U', keyStroke = { { 'cmd' }, 't' } },
+		{ gesture = 'D', keyStroke = { { 'cmd' }, 'w' } },
+		{ gesture = 'UDU', keyStroke = { { 'cmd' }, 'q' } },
+		{ gesture = 'L', keyStroke = { { 'cmd' }, '[' } },
+		{ gesture = 'R', keyStroke = { { 'cmd' }, ']' } },
+		{ gesture = 'LR', keyStroke = { { 'cmd', 'shift' }, '[' } },
+		{ gesture = 'RL', keyStroke = { { 'cmd', 'shift' }, ']' } },
+	}
+}):start()
 local grabScroll = require('grab-scroll'):configure({
 	speed = 1.2,
 	acceleration = 35,

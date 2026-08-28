@@ -46,6 +46,12 @@ See [`double-tap-modifiers.lua`](https://github.com/certainlyakey/hammerspoon-co
 
 See [`windows-layouts.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/main/window-layouts.lua) for usage and code. This one is a bit complicated to configure - check the comments in the source code.
 
+### Trigger actions with right mouse button gestures
+
+Simple 1-4 segment mouse gestures "drawn" on screen as right mouse button is pressed. Regular right clicks are preserved when no gesture is recognized.
+
+See [`init.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/main/init.lua) for configuration, [`mouse-gestures.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/main/mouse-gestures.lua) for gesture recognition.
+
 ## System actions
 
 ### Toggling a specific VPN with a hotkey
