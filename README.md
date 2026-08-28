@@ -206,7 +206,7 @@ You can redirect URLs according to domain or any other part to different browser
 
 ### Display detailed confirmation dialog when quitting
 
-See [`safari.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/main/apps/safari.lua) for usage and [`safari-quit-confirmation.applescript`](https://github.com/certainlyakey/hammerspoon-config/blob/main/apple-scripts/safari-quit-confirmation.applescript).
+See [`safari.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/main/apps/safari.lua).
 
 ### Move tab to left/right with a hotkey
 
