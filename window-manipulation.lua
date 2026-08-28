@@ -24,13 +24,13 @@ end)
 -- Shortcut: Move to previous monitor
 hs.hotkey.bind({ 'shift', 'ctrl', 'cmd' }, 'up', function()
   local window = hs.window.focusedWindow()
-  window:moveToScreen(window:screen():previous())
+  window:moveToScreen(window:screen():previous(), true, true)
 end)
 
 -- Shortcut: Move to next monitor
 hs.hotkey.bind({ 'shift', 'ctrl', 'cmd' }, 'down', function()
   local window = hs.window.focusedWindow()
-  window:moveToScreen(window:screen():next())
+  window:moveToScreen(window:screen():next(), true, true)
   -- window:centerOnScreen()
 end)
 
