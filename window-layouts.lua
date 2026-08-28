@@ -216,8 +216,8 @@ local setWindowLayout = {
   [bundle_identifiers.Chrome] = function(window, forceScreenCount)
     local count = forceScreenCount or screenCount
     if count == 3 then
-      hs.grid.set(window, placements.left.three.quarters, wideDisplayLeft())
-    elseif count == 2 then
+      hs.grid.set(window, placements.left.two.thirds, wideDisplayLeft())
+    elseif count == 2 or (count == 1 and superwideDisplay()) then
       hs.grid.set(window, placements.left.five.twelfths, hs.screen.primaryScreen())
     else
       hs.grid.set(window, placements.centered.full)
@@ -228,8 +228,8 @@ local setWindowLayout = {
     local count = forceScreenCount or screenCount
     if count == 3 then
       hs.grid.set(window, placements.centered.full, wideDisplayRight())
-    elseif count == 2 then
-      hs.grid.set(window, placements.right.half, hs.screen.primaryScreen())
+    elseif count == 2 or (count == 1 and superwideDisplay())  then
+      -- hs.grid.set(window, placements.right.half, hs.screen.primaryScreen())
     else
       hs.grid.set(window, placements.centered.full)
     end
@@ -239,7 +239,7 @@ local setWindowLayout = {
     local count = forceScreenCount or screenCount
     if count == 3 then
       hs.grid.set(window, placements.centered.full, internalDisplay())
-    elseif count == 2 then
+    elseif count == 2 or (count == 1 and superwideDisplay()) then
       hs.grid.set(window, placements.centered.medium, hs.screen.primaryScreen())
     else
       hs.grid.set(window, placements.centered.full)
@@ -250,7 +250,7 @@ local setWindowLayout = {
     local count = forceScreenCount or screenCount
     if count == 3 then
       hs.grid.set(window, placements.left.two.thirds, wideDisplayRight())
-    elseif count == 2 then
+    elseif count == 2 or (count == 1 and superwideDisplay()) then
       hs.grid.set(window, placements.centered.medbig, hs.screen.primaryScreen())
     else
       hs.grid.set(window, placements.centered.full)
@@ -261,7 +261,7 @@ local setWindowLayout = {
     local count = forceScreenCount or screenCount
     if count == 3 then
       hs.grid.set(window, placements.left.two.thirds, wideDisplayRight())
-    elseif count == 2 then
+    elseif count == 2 or (count == 1 and superwideDisplay()) then
       hs.grid.set(window, placements.centered.medbig, hs.screen.primaryScreen())
     else
       hs.grid.set(window, placements.centered.full)
@@ -271,9 +271,11 @@ local setWindowLayout = {
   [bundle_identifiers.Ghostty] = function(window, forceScreenCount)
     local count = forceScreenCount or screenCount
     if count == 3 then
-      hs.grid.set(window, placements.right.quarter, wideDisplayLeft())
+      hs.grid.set(window, placements.right.half, wideDisplayLeft())
     elseif count == 2 then
-      hs.grid.set(window, placements.right.half, hs.screen.primaryScreen())
+      hs.grid.set(window, placements.centered.full, internalDisplay())
+    elseif count == 1 and superwideDisplay() then
+      hs.grid.set(window, placements.left.quarter, hs.screen.primaryScreen())
     else
       hs.grid.set(window, placements.centered.full)
     end
@@ -283,7 +285,7 @@ local setWindowLayout = {
     local count = forceScreenCount or screenCount
     if count == 3 then
       hs.grid.set(window, placements.centered.full, internalDisplay())
-    elseif count == 2 then
+    elseif count == 2 or (count == 1 and superwideDisplay()) then
       hs.grid.set(window, placements.right.half, hs.screen.primaryScreen())
     else
       hs.grid.set(window, placements.centered.full)
@@ -338,7 +340,9 @@ handleWindowEvent = function(window)
     local application = window:application()
     local bundleID = application:bundleID()
     if setWindowLayout[bundleID] and hs.fnutils.contains(apps_to_watch, bundleID) then
-      hs.alert.show('new window resized for ' .. bundleID)
+      hs.alert.show('new window resized for ' .. bundleID, {
+        atScreenEdge = 2, -- bottom
+      })
       setWindowLayout[bundleID](window)
     end
   end
