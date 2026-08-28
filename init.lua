@@ -22,6 +22,11 @@ local switchLayout = require('switch-layout-with-modifier')
 local fnKeys = require('fn-keys')
 local fnMod = require('utils/fn-mod')
 local mouseButtons = require('mouse-buttons')
+local grabScroll = require('grab-scroll'):configure({
+	speed = 1.2,
+	acceleration = 35,
+	excludedApps = {},
+}):start()
 local windowLayouts = require('window-layouts')
 local saveRestoreApps = require('save-restore-apps')
 local switchToEnWhenApp = require('switch-to-en-when-app')
