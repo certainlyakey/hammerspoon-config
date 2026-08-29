@@ -4,14 +4,25 @@ local MAX_BUFFER_LENGTH = 50
 local typeBuffer = ""
 
 -- The snippet library
--- Trigger can be a string or a pattern.
--- We match triggers against the end of the typing buffer.
--- If isPattern is true, trigger is evaluated as a Lua pattern.
-local snippets = {
-    { trigger = "ext", replacement = "extension", select = 3 },
-    { trigger = "ddd", replacement = function() return os.date("%d.%m.%Y") end },
-    { trigger = "ext%s+", replacement = "extension", isPattern = true }
-}
+-- Attempt to load personal config, fallback to example config
+local status, snippets = pcall(require, "text-expander-snippets")
+if not status then
+    snippets = require("text-expander-snippets.example")
+end
+
+-- Utility: Recursively evaluate replacement
+local function evalReplacement(val)
+    if type(val) == "function" then
+        return evalReplacement(val())
+    end
+    if type(val) == "string" then
+        return { text = val }
+    end
+    if type(val) == "table" then
+        return val
+    end
+    return nil
+end
 
 -- Utility: Clear the buffer
 local function clearBuffer()
@@ -82,16 +93,18 @@ local keyTap = hs.eventtap.new({hs.eventtap.event.types.keyDown}, function(e)
     end
     
     -- Check snippets
-    for _, snippet in ipairs(snippets) do
+    for trigger, snippet in pairs(snippets) do
+        local isPattern = type(snippet) == "table" and snippet.isPattern
+        
         local matchStr = nil
-        if snippet.isPattern then
-            local pattern = snippet.trigger
+        if isPattern then
+            local pattern = trigger
             if not pattern:match("%$$") then pattern = pattern .. "$" end
             matchStr = typeBuffer:match(pattern)
         else
-            local len = #snippet.trigger
-            if typeBuffer:sub(-len) == snippet.trigger then
-                matchStr = snippet.trigger
+            local len = #trigger
+            if typeBuffer:sub(-len) == trigger then
+                matchStr = trigger
             end
         end
         
@@ -104,24 +117,31 @@ local keyTap = hs.eventtap.new({hs.eventtap.event.types.keyDown}, function(e)
                 
                 -- Block the final character that completed the trigger
                 local charsToDelete = #matchStr - 1
-                local replacement = type(snippet.replacement) == "function" and snippet.replacement() or snippet.replacement
+                local repData = evalReplacement(snippet)
                 
-                -- Execute substitution async so we can block the current keystroke
-                hs.timer.doAfter(0.01, function()
-                    for i = 1, charsToDelete do
-                        hs.eventtap.keyStroke({}, "delete", 0)
-                    end
-                    hs.eventtap.keyStrokes(replacement)
-                    
-                    if snippet.select and type(snippet.select) == "number" then
-                        for i = 1, snippet.select do
-                            hs.eventtap.keyStroke({"shift"}, "left", 0)
+                if repData and repData.text then
+                    -- Execute substitution async so we can block the current keystroke
+                    hs.timer.doAfter(0.01, function()
+                        for i = 1, charsToDelete do
+                            hs.eventtap.keyStroke({}, "delete", 0)
                         end
-                    end
-                end)
-                
-                clearBuffer()
-                return true
+                        hs.eventtap.keyStrokes(repData.text)
+                        
+                        if repData.select and type(repData.select) == "number" then
+                            for i = 1, repData.select do
+                                hs.eventtap.keyStroke({"shift"}, "left", 0)
+                            end
+                        end
+                        if repData.moveLeft and type(repData.moveLeft) == "number" then
+                            for i = 1, repData.moveLeft do
+                                hs.eventtap.keyStroke({}, "left", 0)
+                            end
+                        end
+                    end)
+                    
+                    clearBuffer()
+                    return true
+                end
             end
         end
     end
