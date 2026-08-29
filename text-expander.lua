@@ -5,9 +5,19 @@ local typeBuffer = ""
 
 -- The snippet library
 -- Attempt to load personal config, fallback to example config
-local status, snippets = pcall(require, "text-expander-snippets")
+local status, expanderData = pcall(require, "text-expander-snippets")
 if not status then
-    snippets = dofile(hs.configdir .. "/text-expander-snippets.example.lua")
+    expanderData = dofile(hs.configdir .. "/text-expander-snippets.example.lua")
+end
+
+local config = expanderData.config or {}
+local snippets = expanderData.snippets or expanderData
+
+local disabledApps = {}
+if config.disabledApps then
+    for _, bundleID in ipairs(config.disabledApps) do
+        disabledApps[bundleID] = true
+    end
 end
 
 -- Utility: Recursively evaluate replacement
@@ -70,6 +80,12 @@ local mouseTap = hs.eventtap.new({
 end):start()
 
 local keyTap = hs.eventtap.new({hs.eventtap.event.types.keyDown}, function(e)
+    local activeApp = hs.application.frontmostApplication()
+    if activeApp and disabledApps[activeApp:bundleID()] then
+        clearBuffer()
+        return false
+    end
+    
     local keycode = e:getKeyCode()
     local flags = e:getFlags()
     
