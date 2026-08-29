@@ -140,7 +140,11 @@ This hides currently open Notification Center banners and alerts.
 See [`other.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/main/other.lua) for usage and [`close-notifications.js`](https://github.com/certainlyakey/hammerspoon-config/blob/main/jxa-scripts/close-notifications.js).
 
 
-## Keyboard layout
+## Working with text
+
+### Text expansion
+
+Basic text expansion with full support for UTF-8. The abbreviations and expansions are defined in `text-expander-snippets.lua` (needs to be created, see [`text-expander-snippets.example.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/main/text-expander-snippets.example.lua)). It has support for automatically selecting last N characters in the expanded phrase (`select` param), placing cursor at N position from end (`moveLeft` param), as well as expanding according to the case of the abbreviation (`caseMode = 0` - strict case match, `caseMode = 1` - ignore abbreviation case, `caseMode = 2` - follow abbreviation case).
 
 ### Toggle keyboard layout by pressing a modifier key
 
