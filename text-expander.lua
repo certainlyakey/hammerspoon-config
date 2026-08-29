@@ -7,7 +7,7 @@ local typeBuffer = ""
 -- Attempt to load personal config, fallback to example config
 local status, snippets = pcall(require, "text-expander-snippets")
 if not status then
-    snippets = require("text-expander-snippets.example")
+    snippets = dofile(hs.configdir .. "/text-expander-snippets.example.lua")
 end
 
 -- Utility: Recursively evaluate replacement
