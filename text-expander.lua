@@ -24,6 +24,35 @@ local function evalReplacement(val)
     return nil
 end
 
+-- Utility: UTF-8 aware lowercasing and uppercasing (ASCII + Cyrillic)
+local function utf8Lower(str)
+    local lower = str:lower()
+    local map = {
+        ["А"]="а", ["Б"]="б", ["В"]="в", ["Г"]="г", ["Д"]="д", ["Е"]="е", ["Ё"]="ё", ["Ж"]="ж", ["З"]="з", ["И"]="и",
+        ["Й"]="й", ["К"]="к", ["Л"]="л", ["М"]="м", ["Н"]="н", ["О"]="о", ["П"]="п", ["Р"]="р", ["С"]="с", ["Т"]="т",
+        ["У"]="у", ["Ф"]="ф", ["Х"]="х", ["Ц"]="ц", ["Ч"]="ч", ["Ш"]="ш", ["Щ"]="щ", ["Ъ"]="ъ", ["Ы"]="ы", ["Ь"]="ь",
+        ["Э"]="э", ["Ю"]="ю", ["Я"]="я"
+    }
+    for upper, l in pairs(map) do
+        lower = lower:gsub(upper, l)
+    end
+    return lower
+end
+
+local function utf8Upper(str)
+    local upper = str:upper()
+    local map = {
+        ["а"]="А", ["б"]="Б", ["в"]="В", ["г"]="Г", ["д"]="Д", ["е"]="Е", ["ё"]="Ё", ["ж"]="Ж", ["з"]="З", ["и"]="И",
+        ["й"]="Й", ["к"]="К", ["л"]="Л", ["м"]="М", ["н"]="Н", ["о"]="О", ["п"]="П", ["р"]="Р", ["с"]="С", ["т"]="Т",
+        ["у"]="У", ["ф"]="Ф", ["х"]="Х", ["ц"]="Ц", ["ч"]="Ч", ["ш"]="Ш", ["щ"]="Щ", ["ъ"]="Ъ", ["ы"]="Ы", ["ь"]="Ь",
+        ["э"]="Э", ["ю"]="Ю", ["я"]="Я"
+    }
+    for lower, u in pairs(map) do
+        upper = upper:gsub(lower, u)
+    end
+    return upper
+end
+
 -- Utility: Clear the buffer
 local function clearBuffer()
     typeBuffer = ""
@@ -96,22 +125,33 @@ local keyTap = hs.eventtap.new({hs.eventtap.event.types.keyDown}, function(e)
     end
     
     -- Check snippets
+    local typeBufferLower = utf8Lower(typeBuffer)
     for trigger, snippet in pairs(snippets) do
         local isPattern = type(snippet) == "table" and snippet.isPattern
+        local caseMode = type(snippet) == "table" and snippet.caseMode or 0
         
         local matchStr = nil
+        local triggerToMatch = trigger
+        local bufferToMatch = typeBuffer
+        
+        if caseMode >= 1 then
+            triggerToMatch = utf8Lower(trigger)
+            bufferToMatch = typeBufferLower
+        end
+        
         if isPattern then
-            local pattern = trigger
+            local pattern = triggerToMatch
             if not pattern:match("%$$") then pattern = pattern .. "$" end
-            matchStr = typeBuffer:match(pattern)
+            matchStr = bufferToMatch:match(pattern)
         else
-            local len = #trigger
-            if typeBuffer:sub(-len) == trigger then
-                matchStr = trigger
+            local len = #triggerToMatch
+            if bufferToMatch:sub(-len) == triggerToMatch then
+                matchStr = bufferToMatch:sub(-len)
             end
         end
         
         if matchStr then
+            -- Note: matchStr length in bytes is the same whether lower or uppercase for our supported characters
             local prevCharPos = #typeBuffer - #matchStr
             local prevChar = ""
             if prevCharPos > 0 then
@@ -140,6 +180,32 @@ local keyTap = hs.eventtap.new({hs.eventtap.event.types.keyDown}, function(e)
                 local repData = evalReplacement(snippet)
                 
                 if repData and repData.text then
+                    -- Get the original casing of the matched trigger from the real buffer
+                    local originalMatchStr = typeBuffer:sub(-#matchStr)
+                    
+                    -- Apply caseMode 2 logic
+                    if caseMode == 2 then
+                        local hasLower = originalMatchStr:match("[%aа-яё]")
+                        local hasUpper = originalMatchStr:match("[%AА-ЯЁ]")
+                        
+                        -- Simple heuristic:
+                        -- If it contains uppercase but NO lowercase, it's ALL CAPS
+                        if hasUpper and not hasLower then
+                            repData.text = utf8Upper(repData.text)
+                        -- If the first character is uppercase, capitalize the output
+                        else
+                            local firstCharLen = utf8.offset(originalMatchStr, 2) or (#originalMatchStr + 1)
+                            local firstChar = originalMatchStr:sub(1, firstCharLen - 1)
+                            
+                            if firstChar:match("[%AА-ЯЁ]") then
+                                local firstOutLen = utf8.offset(repData.text, 2) or (#repData.text + 1)
+                                local firstOut = repData.text:sub(1, firstOutLen - 1)
+                                local restOut = repData.text:sub(firstOutLen)
+                                repData.text = utf8Upper(firstOut) .. restOut
+                            end
+                        end
+                    end
+                    
                     -- Execute substitution async so we can block the current keystroke
                     hs.timer.doAfter(0.01, function()
                         -- 1. Delete characters

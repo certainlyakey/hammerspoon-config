@@ -31,5 +31,15 @@ return {
 
     -- 6. Pattern Matching: use isPattern = true to evaluate the trigger as a Lua pattern.
     -- E.g. matches "ext" followed by 1 or more spaces.
-    ["ext%s+"] = { text = "extension", isPattern = true }
+    ["ext%s+"] = { text = "extension", isPattern = true },
+
+    -- 7. Case Insensitive: trigger expands no matter how it is typed (output stays exactly as defined).
+    ["idk "] = { text = "I don't know", caseMode = 1 },
+
+    -- 8. Smart Casing: output casing matches the typed abbreviation.
+    -- Typing "btw " -> "by the way", "Btw " -> "By the way", "BTW " -> "BY THE WAY"
+    ["btw "] = { text = "by the way", caseMode = 2 },
+    
+    -- Cyrillic smart casing is fully supported
+    ["пжл "] = { text = "пожалуйста", caseMode = 2 }
 }
