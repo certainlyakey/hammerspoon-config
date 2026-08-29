@@ -49,6 +49,7 @@ local saveRestoreApps = require('save-restore-apps')
 local switchToEnWhenApp = require('switch-to-en-when-app')
 local forwardURLsToBrowsers = require('forward-urls-to-browsers')
 local other = require('other')
+local textExpander = require('text-expander')
 local playground = require('playground')
 
 -- Global Hammerspoon settings
