@@ -19,7 +19,9 @@ local function evalReplacement(val)
         return { text = val }
     end
     if type(val) == "table" then
-        return val
+        local copy = {}
+        for k, v in pairs(val) do copy[k] = v end
+        return copy
     end
     return nil
 end
