@@ -21,6 +21,11 @@ local convertSelectionLayout = require('convert-selection-layout')
 local switchLayout = require('switch-layout-with-modifier')
 local fnKeys = require('fn-keys')
 local fnMod = require('utils/fn-mod')
+local fnWindowManipulation = require('fn-window-manipulation'):configure({
+	excludedAppBundleIDs = {},
+	minWidth = 120,
+	minHeight = 80,
+}):start()
 local mouseButtons = require('mouse-buttons')
 local mouseGestures = require('mouse-gestures'):configure({
 	gestures = {
