@@ -185,8 +185,8 @@ local keyTap = hs.eventtap.new({hs.eventtap.event.types.keyDown}, function(e)
                     
                     -- Apply caseMode 2 logic
                     if caseMode == 2 then
-                        local hasLower = originalMatchStr:match("[%lа-яё]")
-                        local hasUpper = originalMatchStr:match("[%uА-ЯЁ]")
+                        local hasLower = (utf8Upper(originalMatchStr) ~= originalMatchStr)
+                        local hasUpper = (utf8Lower(originalMatchStr) ~= originalMatchStr)
                         
                         -- Simple heuristic:
                         -- If it contains uppercase but NO lowercase, it's ALL CAPS
@@ -197,7 +197,9 @@ local keyTap = hs.eventtap.new({hs.eventtap.event.types.keyDown}, function(e)
                             local firstCharLen = utf8.offset(originalMatchStr, 2) or (#originalMatchStr + 1)
                             local firstChar = originalMatchStr:sub(1, firstCharLen - 1)
                             
-                            if firstChar:match("[%uА-ЯЁ]") then
+                            local isFirstUpper = (utf8Lower(firstChar) ~= firstChar)
+                            
+                            if isFirstUpper then
                                 local firstOutLen = utf8.offset(repData.text, 2) or (#repData.text + 1)
                                 local firstOut = repData.text:sub(1, firstOutLen - 1)
                                 local restOut = repData.text:sub(firstOutLen)
