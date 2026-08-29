@@ -65,11 +65,11 @@ local keyTap = hs.eventtap.new({hs.eventtap.event.types.keyDown}, function(e)
 
     if keycode == 51 then -- Backspace
         if #typeBuffer > 0 then
-            -- Remove last character
-            -- Using string.sub is simple and works for ASCII.
-            -- Note: UTF-8 backspacing in Lua requires more logic, 
-            -- but assuming standard characters for snippets.
-            typeBuffer = typeBuffer:sub(1, -2)
+            -- Remove last character (UTF-8 aware)
+            local lastCharStart = utf8.offset(typeBuffer, -1)
+            if lastCharStart then
+                typeBuffer = typeBuffer:sub(1, lastCharStart - 1)
+            end
         end
         return false
     end
@@ -82,14 +82,17 @@ local keyTap = hs.eventtap.new({hs.eventtap.event.types.keyDown}, function(e)
     local char = e:getCharacters()
     if not char or char == "" then return false end
     
-    -- We only care about standard printable characters (including spaces/punctuation)
-    if not char:match("[%w%s%p]") then
+    -- Filter out control characters (like enter, tab, etc which are handled above)
+    if char:match("%c") then
         return false
     end
     
     typeBuffer = typeBuffer .. char
-    if #typeBuffer > MAX_BUFFER_LENGTH then
-        typeBuffer = typeBuffer:sub(-MAX_BUFFER_LENGTH)
+    if utf8.len(typeBuffer) and utf8.len(typeBuffer) > MAX_BUFFER_LENGTH then
+        local cutPos = utf8.offset(typeBuffer, -MAX_BUFFER_LENGTH)
+        if cutPos then
+            typeBuffer = typeBuffer:sub(cutPos)
+        end
     end
     
     -- Check snippets
@@ -110,13 +113,30 @@ local keyTap = hs.eventtap.new({hs.eventtap.event.types.keyDown}, function(e)
         
         if matchStr then
             local prevCharPos = #typeBuffer - #matchStr
-            local prevChar = prevCharPos > 0 and typeBuffer:sub(prevCharPos, prevCharPos) or ""
+            local prevChar = ""
+            if prevCharPos > 0 then
+                local prevCharStart = utf8.offset(typeBuffer, -1, prevCharPos + 1)
+                if prevCharStart then
+                    prevChar = typeBuffer:sub(prevCharStart, prevCharPos)
+                end
+            end
             
+            -- Word boundary: empty (start of buffer), or any space/punctuation
+            -- Since match pattern doesn't cover UTF-8 punctuation completely, we just ensure 
+            -- it's not a standard word character and not a cyrillic letter
+            local isWordBoundary = false
             if prevChar == "" or prevChar:match("[%s%p]") then
+                isWordBoundary = true
+            elseif not prevChar:match("[%wА-Яа-яЁё]") then
+                -- Broad fallback for other non-word characters
+                isWordBoundary = true
+            end
+            
+            if isWordBoundary then
                 -- Match triggered!
                 
                 -- Block the final character that completed the trigger
-                local charsToDelete = #matchStr - 1
+                local charsToDelete = utf8.len(matchStr) - 1
                 local repData = evalReplacement(snippet)
                 
                 if repData and repData.text then
