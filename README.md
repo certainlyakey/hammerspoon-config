@@ -38,11 +38,11 @@ See [`window-manipulation.lua`](https://github.com/certainlyakey/hammerspoon-con
 
 See [`window-manipulation.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/main/window-manipulation.lua) for usage and [`windows-spaces.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/main/utils/windows-spaces.lua).
 
-### Move the window under the mouse by holding Fn
+### Move the window under the mouse or resize the focused window by holding Fn
 
-Hold `Fn` and move the mouse to move the topmost standard window under the pointer without focusing it. Hold left `Shift` while moving to constrain movement horizontally or vertically.
+Hold `Fn` and move the mouse to move the topmost standard non-expanded window under the pointer without focusing it. Hold left `Shift` while moving to constrain movement horizontally or vertically. Hold `Fn` + `Ctrl` and move the mouse to resize the focused window from the corner closest to the pointer. Apps can be excluded by bundle ID with `excludedAppBundleIDs`.
 
-See [`fn-move-window.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/main/fn-move-window.lua).
+See [`fn-window-manipulation.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/main/fn-window-manipulation.lua).
 
 ### Move mouse to current window by double tapping a modifier key
 
