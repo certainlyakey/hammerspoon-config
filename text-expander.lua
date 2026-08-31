@@ -15,8 +15,12 @@ local snippets = expanderData.snippets or expanderData
 
 local disabledApps = {}
 if config.disabledApps then
-    for _, bundleID in ipairs(config.disabledApps) do
-        disabledApps[bundleID] = true
+    for k, v in pairs(config.disabledApps) do
+        if type(k) == "number" and type(v) == "string" then
+            disabledApps[v] = true
+        elseif type(k) == "string" then
+            disabledApps[k] = v
+        end
     end
 end
 
@@ -81,9 +85,20 @@ end):start()
 
 local keyTap = hs.eventtap.new({hs.eventtap.event.types.keyDown}, function(e)
     local activeApp = hs.application.frontmostApplication()
-    if activeApp and disabledApps[activeApp:bundleID()] then
-        clearBuffer()
-        return false
+    if activeApp then
+        local bundleID = activeApp:bundleID()
+        local disabled = disabledApps[bundleID]
+        if disabled ~= nil then
+            if type(disabled) == "function" then
+                if disabled(activeApp) then
+                    clearBuffer()
+                    return false
+                end
+            elseif disabled then
+                clearBuffer()
+                return false
+            end
+        end
     end
     
     local keycode = e:getKeyCode()
