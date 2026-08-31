@@ -5,9 +5,32 @@
 return {
     config = {
         -- List of application bundle IDs where text expansions should be completely disabled
+        -- You can also provide a function as a value to conditionally disable expansions (return true to disable)
         disabledApps = {
-            "com.microsoft.VSCode",
-            "com.apple.Terminal"
+            "com.apple.Terminal",
+            ["com.microsoft.VSCode"] = function(app)
+                local el = hs.axuielement.systemWideElement():attributeValue("AXFocusedUIElement")
+                if not el then return true end
+                
+                local curr = el
+                local depth = 0
+                while curr and depth < 10 do
+                    local domClass = curr:attributeValue("AXDOMClassList")
+                    if domClass then
+                        for _, c in ipairs(domClass) do
+                            if c == "chat-input-container" then
+                                -- Enable in Copilot Chat prompt
+                                return false
+                            end
+                        end
+                    end
+                    curr = curr:attributeValue("AXParent")
+                    depth = depth + 1
+                end
+                
+                -- Disable in the rest of VSCode
+                return true
+            end
         }
     },
     
