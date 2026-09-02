@@ -32,11 +32,11 @@ local mouseGestures = require('mouse-gestures'):configure({
 		{ gesture = 'UD', keyStroke = { { 'cmd' }, 'r' } },
 		{ gesture = 'U', keyStroke = { { 'cmd' }, 't' } },
 		{ gesture = 'D', keyStroke = { { 'cmd' }, 'w' } },
-		{ gesture = 'UDU', keyStroke = { { 'cmd' }, 'q' } },
+		{ gesture = 'UDU', keyStroke = { { 'cmd' }, 'q' }, message = 'Quit' },
 		{ gesture = 'L', keyStroke = { { 'cmd' }, '[' } },
 		{ gesture = 'R', keyStroke = { { 'cmd' }, ']' } },
-		{ gesture = 'LR', keyStroke = { { 'cmd', 'shift' }, '[' } },
-		{ gesture = 'RL', keyStroke = { { 'cmd', 'shift' }, ']' } },
+		{ gesture = 'LR', keyStroke = { { 'cmd', 'shift' }, '[' }, message = 'Previous Tab' },
+		{ gesture = 'RL', keyStroke = { { 'cmd', 'shift' }, ']' }, message = 'Next Tab' },
 	}
 }):start()
 local grabScroll = require('grab-scroll'):configure({

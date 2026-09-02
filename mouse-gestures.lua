@@ -87,6 +87,10 @@ function MouseGestures:findGesture(gesture)
 end
 
 function MouseGestures:performAction(rule, context)
+  if rule.message ~= nil then
+    hs.alert.show(rule.message)
+  end
+
   if rule.keyStroke ~= nil then
     eventtap.keyStroke(rule.keyStroke[1] or {}, rule.keyStroke[2])
   end
