@@ -1,5 +1,5 @@
 local fileUtils = require('utils/file-utils')
-local lines = fileUtils.linesInFile('spaces.txt')
+local lines = fileUtils.linesInFile('config/spaces.txt')
 
 local getSpaceLabel = function(index)
   local label = ''

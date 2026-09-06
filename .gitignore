@@ -3,7 +3,6 @@ Spoons/
 _backups/
 .nova/
 bin/
-spaces.txt
 .vscode/favorites.json
 config/
 text-expander-snippets.lua

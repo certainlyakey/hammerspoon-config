@@ -129,7 +129,7 @@ See [`fn-mod.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/main
 
 ### Display an alert with a space number and optional label when switching spaces
 
-You can optionally add a label to each space by creating a `spaces.txt` file next to the script. On each line the file should have a label for each space.
+You can optionally add a label to each space by creating a `config/spaces.txt` file. Each line of the file should contain a label for each space.
 
 See [`display-space-number.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/main/display-space-number.lua).
 
