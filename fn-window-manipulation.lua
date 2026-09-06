@@ -228,12 +228,10 @@ function FnWindowManipulation:moveTo(position, event)
 
   deltaX, deltaY = constrainDelta(deltaX, deltaY, self.constraintAxis)
 
-  self.targetWindow:setFrame({
+  self.targetWindow:setTopLeft({
     x = self.startFrame.x + deltaX,
     y = self.startFrame.y + deltaY,
-    w = self.startFrame.w,
-    h = self.startFrame.h,
-  }, 0)
+  })
 
   return true
 end
