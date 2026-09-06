@@ -1,4 +1,7 @@
 -- see also https://github.com/search?q=URLDispatcher+url_patterns+language%3ALua&type=code&l=Lua
+hs.loadSpoon('SpoonInstall')
+local Install = spoon.SpoonInstall
+
 local ok, user_patterns = pcall(require, 'config/url-redirection-patterns')
 if not ok then
 	print("forward-urls-to-browsers: config/url-redirection-patterns not found, using defaults")
@@ -30,8 +33,6 @@ end
 hs.urlevent.bind("https", fixStrippedColonURL)
 hs.urlevent.bind("http", fixStrippedColonURL)
 
-hs.loadSpoon("URLDispatcher")
-
 local url_patterns = {
 	{ ".*", "com.apple.Safari" },
 }
@@ -40,6 +41,9 @@ for key, value in pairs(user_patterns) do
 	url_patterns[key] = value
 end
 
-spoon.URLDispatcher.url_patterns = url_patterns
-
-spoon.URLDispatcher:start()
+Install:andUse("URLDispatcher", {
+	config = {
+		url_patterns = url_patterns
+	},
+	start = true
+})
