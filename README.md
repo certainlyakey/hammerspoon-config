@@ -40,7 +40,7 @@ See [`window-manipulation.lua`](https://github.com/certainlyakey/hammerspoon-con
 
 See [`window-manipulation.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/main/window-manipulation.lua) for usage and [`windows-spaces.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/main/utils/windows-spaces.lua).
 
-### Move the window under the mouse or resize the focused window by holding Fn
+### Move the window under the mouse or resize the focused window by holding Fn + other modifiers
 
 Hold `Fn` and move the mouse to move the topmost standard non-expanded window under the pointer without focusing it. Hold left `Shift` while moving to constrain movement horizontally or vertically. Hold `Fn` + `Ctrl` and move the mouse to resize the focused window from the corner closest to the pointer. Apps can be excluded by bundle ID with `excludedAppBundleIDs`.
 
@@ -59,6 +59,10 @@ See [`windows-layouts.lua`](https://github.com/certainlyakey/hammerspoon-config/
 Simple 1-4 segment mouse gestures "drawn" on screen as right mouse button is pressed. Regular right clicks are preserved when no gesture is recognized.
 
 See [`init.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/main/init.lua) for configuration, [`mouse-gestures.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/main/mouse-gestures.lua) for gesture recognition.
+
+### Saving and restoring currently open apps
+
+See [`save-restore-apps.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/main/save-restore-apps.lua).
 
 ## System actions
 
@@ -146,7 +150,7 @@ See [`other.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/main/
 
 ### Text expansion
 
-Basic text expansion with full support for UTF-8. The abbreviations and expansions are defined in `text-expander-snippets.lua` (needs to be created, see [`text-expander-snippets.example.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/main/text-expander-snippets.example.lua)). It has support for automatically selecting last N characters in the expanded phrase (`select` param), placing cursor at N position from end (`moveLeft` param), as well as expanding according to the case of the abbreviation (`caseMode = 0` - strict case match, `caseMode = 1` - ignore abbreviation case, `caseMode = 2` - follow abbreviation case).
+Basic text expansion with full support for UTF-8. The abbreviations and expansions are defined in `config/text-expander-snippets.lua` (needs to be created, see [`text-expander-snippets.example.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/main/text-expander-snippets.example.lua)). It has support for automatically selecting last N characters in the expanded phrase (`select` param), placing cursor at N position from end (`moveLeft` param), as well as expanding according to the case of the abbreviation (`caseMode = 0` - strict case match, `caseMode = 1` - ignore abbreviation case, `caseMode = 2` - follow abbreviation case).
 
 ### Toggle keyboard layout by pressing a modifier key
 
@@ -220,7 +224,7 @@ See [`open-folders.lua`](https://github.com/certainlyakey/hammerspoon-config/blo
 You can redirect URLs according to domain or any other part to different browsers or apps across the OS. This uses core [URLDispatcher spoon](https://www.hammerspoon.org/Spoons/URLDispatcher.html#url_patterns) of Hammerspoon. For now it assumes Safari is your actual default browser. See [forward-urls-to-browsers.lua](https://github.com/certainlyakey/hammerspoon-config/blob/main/forward-urls-to-browsers.lua.lua). 
 
 
-1. Place a config file called `config/url-redirection-patterns.lua` with a returned table of [url_patterns](https://www.hammerspoon.org/Spoons/URLDispatcher.html#url_patterns)-compatible patterns. 
+1. Place a config file called `config/url-redirection-patterns.lua` with a returned table of [url_patterns](https://www.hammerspoon.org/Spoons/URLDispatcher.html#url_patterns)-compatible patterns.
 2. Set Hammerspoon as the configured default browser in the MacOS settings. 
 3. The above will take care of redirections happening from non-browser applications (by default everything will be sent to Safari). For redirection from within web pages in Safari to other apps (eg always open some websites in Chrome when clicking a link on a page), you can use [Redirector Safari extension](https://store.rxliuli.com/extensions/redirector/) with a source URL like `(https?://mywebsite.com.*)` and a target URL like `hammerspoon://$1`. 
 
@@ -243,7 +247,3 @@ See [`safari.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/main
 ### Navigate "up a directory" in the currently viewed Safari tab
 
 See [`safari.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/main/apps/safari.lua) for usage and [`safari-go-up.applescript`](https://github.com/certainlyakey/hammerspoon-config/blob/main/apple-scripts/safari-up.applescript)
-
-### Saving and restoring currently open apps
-
-See [`save-restore-apps.lua`](https://github.com/certainlyakey/hammerspoon-config/blob/main/save-restore-apps.lua).
