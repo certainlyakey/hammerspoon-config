@@ -37,6 +37,10 @@ local mouseGestures = require('mouse-gestures'):configure({
 		{ gesture = 'R', keyStroke = { { 'cmd' }, ']' } },
 		{ gesture = 'LR', keyStroke = { { 'cmd', 'shift' }, '[' }, message = 'Previous Tab' },
 		{ gesture = 'RL', keyStroke = { { 'cmd', 'shift' }, ']' }, message = 'Next Tab' },
+		{ gesture = 'UL', keyStroke = { {}, 'home' }, message = 'Home' },
+		{ gesture = 'UR', keyStroke = { {}, 'home' }, message = 'Home' },
+		{ gesture = 'DL', keyStroke = { {}, 'end' }, message = 'End' },
+		{ gesture = 'DR', keyStroke = { {}, 'end' }, message = 'End' },
 	}
 }):start()
 local grabScroll = require('grab-scroll'):configure({
