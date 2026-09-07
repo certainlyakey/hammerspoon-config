@@ -37,7 +37,7 @@ end)
 
 -- Shortcut: open Trash
 hs.hotkey.bind({'alt', 'cmd'}, 'b', function()
-  hs.execute('open ~/.hammerspoon/bin/open-trash.app')
+  hs.osascript.applescript('tell application "Finder" to open trash')
   hs.application.launchOrFocus('Finder')
 end)
 
