@@ -5,4 +5,3 @@ _backups/
 bin/
 .vscode/favorites.json
 config/
-text-expander-snippets.lua

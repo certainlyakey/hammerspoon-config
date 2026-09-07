@@ -4,6 +4,8 @@ These are my assorted [Hammerspoon](https://www.hammerspoon.org) scripts, someti
 
 The scripts were tested with Sonoma/Sequoia (although an occasional script remains to be updated in order to work on Sequoia).
 
+Note the whole `config` folder is git-ignored and is meant for user or computer-specific configuration files.
+
 ## Opening apps, focusing and moving windows
 
 ### Open specific pane in the Settings app

@@ -1,6 +1,6 @@
 -- text-expander-snippets.example.lua
 -- This is a template for the text expander snippets.
--- Copy this file to `text-expander-snippets.lua` to customize it.
+-- Copy this file to `config/text-expander-snippets.lua` to customize it.
 
 return {
     config = {

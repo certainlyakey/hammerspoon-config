@@ -5,7 +5,7 @@ local typeBuffer = ""
 
 -- The snippet library
 -- Attempt to load personal config, fallback to example config
-local status, expanderData = pcall(require, "text-expander-snippets")
+local status, expanderData = pcall(require, "config/text-expander-snippets")
 if not status then
     expanderData = dofile(hs.configdir .. "/text-expander-snippets.example.lua")
 end
