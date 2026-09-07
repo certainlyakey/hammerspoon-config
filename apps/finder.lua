@@ -42,6 +42,10 @@ local hotkeys = {
   hs.hotkey.new({'ctrl', 'shift', 'cmd'}, 'd', nil, function()
     hs.osascript.applescriptFromFile('apple-scripts/finder-duplicate-window.applescript')
   end),
+  -- Shortcut: Invert Finder selection
+  hs.hotkey.new({'ctrl', 'shift', 'cmd', 'alt'}, 'i', nil, function()
+    hs.osascript.applescriptFromFile('apple-scripts/finder-invert-selection.applescript')
+  end),
   -- Shortcut: Create file
   hs.hotkey.new({'ctrl'}, 't', nil, function()
     createNewFile()
