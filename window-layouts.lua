@@ -288,7 +288,7 @@ local setWindowLayout = {
     elseif count == 2 or (count == 1 and superwideDisplay()) then
       hs.grid.set(window, placements.right.half, hs.screen.primaryScreen())
     else
-      hs.grid.set(window, placements.centered.full)
+      hs.grid.set(window, placements.centered.full, internalDisplay())
     end
   end,
 }
