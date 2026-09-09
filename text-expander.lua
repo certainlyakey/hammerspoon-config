@@ -1,5 +1,7 @@
 local M = {}
 
+local runAfter = require('utils/run-after')
+
 local MAX_BUFFER_LENGTH = 50
 local typeBuffer = ""
 
@@ -242,21 +244,21 @@ local keyTap = hs.eventtap.new({hs.eventtap.event.types.keyDown}, function(e)
                     end
                     
                     -- Execute substitution async so we can block the current keystroke
-                    hs.timer.doAfter(0.01, function()
+                    runAfter(0.01, function()
                         -- 1. Delete characters
                         for i = 1, charsToDelete do
                             hs.eventtap.keyStroke({}, "delete", 0)
                         end
                         
                         -- 2. Wait for deletes to process, then type text
-                        hs.timer.doAfter(0.05, function()
+                        runAfter(0.05, function()
                             hs.eventtap.keyStrokes(repData.text)
                             
                             -- 3. Wait for typing to complete before cursor movements
                             if repData.select or repData.moveLeft then
                                 -- Safe estimation of typing time to prevent interleaving
                                 local typeTime = (#repData.text * 0.01) + 0.1
-                                hs.timer.doAfter(typeTime, function()
+                                runAfter(typeTime, function()
                                     if repData.select and type(repData.select) == "number" then
                                         for i = 1, repData.select do
                                             hs.eventtap.keyStroke({"shift"}, "left", 0)
