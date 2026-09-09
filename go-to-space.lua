@@ -1,12 +1,24 @@
--- Double-tap of the modifier produces the original key
+-- Tap § to type the character; hold it as a modifier to switch spaces
 -- from https://groups.google.com/g/hammerspoon/c/HgDHNAWupFU/m/hny2NN8FCAAJ
-local runAfter = require('utils/run-after')
-
 local modifierKey = '§'
 local k = hs.hotkey.modal.new()
-local triggerK = hs.hotkey.bind('', modifierKey, function() 
-    k:enter() 
-end)
+
+-- Set when § is used as a modifier, so releasing it doesn't also type the character
+local usedWhileHeld = false
+
+local triggerK = hs.hotkey.bind('', modifierKey,
+    function()
+        usedWhileHeld = false
+        k:enter()
+    end,
+    function()
+        k:exit()
+        if not usedWhileHeld then
+            -- Unicode event rather than the § keycode, so this doesn't re-trigger the hotkey
+            hs.eventtap.keyStrokes(modifierKey)
+        end
+    end
+)
 
 -- Function to handle space switching
 local function goToSpaceByNumber(spaceIndex)
@@ -15,25 +27,23 @@ end
 
 -- Bind number keys only when in modal state
 for i = 1, 6 do
-    k:bind('', tostring(i), nil, function() 
+    k:bind('', tostring(i), nil, function()
+        usedWhileHeld = true
         goToSpaceByNumber(i)
-        k:exit()
     end)
 end
 
--- Shortcut: Go to space by pressing a custom modifier (§) and number key
-k:bind('', modifierKey, nil, function()
-    triggerK:disable()
-    hs.eventtap.keyStroke({''}, modifierKey)
-    runAfter(0.1, function() 
-        triggerK:enable() 
-    end)
+-- Automatically exit modal after 2 seconds if no key is pressed.
+-- A single restartable timer, cancelled on exit, so a stale countdown from an
+-- earlier entry can't cut a later one short.
+local exitTimer = hs.timer.delayed.new(2, function()
     k:exit()
 end)
 
--- Automatically exit modal after 2 seconds if no key is pressed
 k.entered = function(self)
-    runAfter(2, function() 
-        k:exit() 
-    end)
+    exitTimer:start()
+end
+
+k.exited = function(self)
+    exitTimer:stop()
 end
